@@ -15,7 +15,7 @@
 
   /* Accent */
   --color-accent: var(--primary-accent);
-
+  --color-secondary-accent: var(--secondary-accent); 
   /* Borders */
   --color-border: var(--border);
   --color-border-hover: var(--border-hover);
@@ -29,4 +29,43 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes borderBeam {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-beam {
+  animation: borderBeam 4s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(100px);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(100px);
+  }
+}
+
+.skills-track {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-10%);
+  }
 }
