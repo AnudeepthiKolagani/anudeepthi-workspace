@@ -1,0 +1,201 @@
+import { Send, ArrowUpRight, Mail } from "lucide-react";
+
+import { SiGithub, SiMedium } from "react-icons/si";
+
+export default function ContactSection() {
+  return (
+    <section id="contact" className="relative overflow-hidden px-6 py-32">
+      {/* Glow Effects */}
+      <div className="absolute left-20 top-20 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
+
+      <div className="absolute right-20 bottom-20 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
+
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-20 text-center">
+          <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
+            Contact
+          </p>
+
+          <h2 className="text-5xl font-bold">Let's Build Something Great</h2>
+
+          <p className="mx-auto mt-6 max-w-2xl opacity-70">
+            Whether you have a project idea, a freelance opportunity, or simply
+            want to connect, I'm always open to meaningful conversations.
+          </p>
+        </div>
+        <div className="mb-6 inline-flex rounded-full border px-4 py-2 text-sm">
+          Open to Freelance & Full-Time Roles
+        </div>
+
+        {/* Main Grid */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* LEFT */}
+          <div className="space-y-6">
+            <ContactCard
+              icon={<SiGithub size={28} />}
+              title="LinkedIn"
+              subtitle="Professional network"
+              href="https://www.linkedin.com/in/anudeepthi-kolagani/"
+            />
+
+            <ContactCard
+              icon={<SiGithub size={28} />}
+              title="GitHub"
+              subtitle="Projects & contributions"
+              href="https://www.linkedin.com/in/anudeepthi-kolagani/"
+            />
+
+            <ContactCard
+              icon={<SiMedium size={28} />}
+              title="Medium"
+              subtitle="Articles & insights"
+              href="https://www.linkedin.com/in/anudeepthi-kolagani/"
+            />
+
+            <ContactCard
+              icon={<Mail size={28} />}
+              title="Email"
+              subtitle="Reach me directly"
+              href="mailto:anudeepthi.kolagani@gmail.com"
+            />
+          </div>
+
+          {/* RIGHT */}
+          <div
+            className="
+              rounded-3xl
+              border
+              p-8
+              backdrop-blur-sm
+              transition-all
+              duration-500
+              hover:-translate-y-2
+            "
+          >
+            <h3 className="mb-8 text-2xl font-semibold">Send a Message</h3>
+
+            <form className="space-y-5">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="
+                  w-full
+                  rounded-2xl
+                  border
+                  bg-transparent
+                  px-5
+                  py-4
+                  outline-none
+                "
+              />
+
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="
+                  w-full
+                  rounded-2xl
+                  border
+                  bg-transparent
+                  px-5
+                  py-4
+                  outline-none
+                "
+              />
+
+              <input
+                type="text"
+                placeholder="Subject"
+                className="
+                  w-full
+                  rounded-2xl
+                  border
+                  bg-transparent
+                  px-5
+                  py-4
+                  outline-none
+                "
+              />
+
+              <textarea
+                rows="6"
+                placeholder="Tell me about your project..."
+                className="
+                  w-full
+                  resize-none
+                  rounded-2xl
+                  border
+                  bg-transparent
+                  px-5
+                  py-4
+                  outline-none
+                "
+              />
+
+              <button
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  px-8
+                  py-4
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                "
+              >
+                Send Message
+                <Send size={18} />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactCard({ icon, title, subtitle, href }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="
+        group
+        flex
+        items-center
+        justify-between
+        rounded-3xl
+        border
+        p-6
+        transition-all
+        duration-500
+        hover:-translate-y-2
+      "
+    >
+      <div className="flex items-center gap-5">
+        <div className="rounded-2xl border p-4">{icon}</div>
+
+        <div>
+          <h4 className="font-semibold">{title}</h4>
+
+          <p className="text-sm opacity-70">{subtitle}</p>
+        </div>
+      </div>
+
+      <ArrowUpRight
+        size={22}
+        className="
+          transition-transform
+          duration-300
+          group-hover:translate-x-1
+          group-hover:-translate-y-1
+        "
+      />
+    </a>
+  );
+}
