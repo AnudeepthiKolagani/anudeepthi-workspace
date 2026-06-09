@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full">
-      <nav className="max-w-8xl mt-4 flex mx-10 items-center justify-between rounded-lg px-6 py-4 shadow-lg transition-all duration-300">
+      <nav className="max-w-8xl mt-4 flex mx-20 items-center justify-between rounded-lg px-6 py-4 shadow-lg transition-all duration-300">
         {/* Glow Layer */}
         <div className="absolute inset-0 rounded-lg opacity-50 blur-2xl pointer-events-none animate-pulse" />
 
