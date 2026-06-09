@@ -1,40 +1,55 @@
-import { Zap, Layers3, ShieldCheck, Workflow } from "lucide-react";
+import { Zap, Layers3, ShieldCheck, Workflow, Circle } from "lucide-react";
 
 const principles = [
   {
     icon: Zap,
-    title: "Performance First",
-    description:
-      "Build responsive experiences through code splitting, lazy loading, memoization, and efficient rendering.",
+    title: "Performance Across the Stack",
+    description: [
+      "Optimize frontend rendering performance",
+      "Apply code splitting and lazy loading strategies",
+      "Improve backend response time and query efficiency",
+      "Use caching to reduce redundant computations",
+    ],
   },
   {
     icon: Layers3,
-    title: "Scalable Architecture",
-    description:
-      "Create reusable components and maintainable systems that can evolve as products grow.",
+    title: "Scalable System Design",
+    description: [
+      "Design reusable and modular frontend components",
+      "Build APIs that support future expansion",
+      "Structure backend services for independent scaling",
+      "Keep architecture flexible for evolving requirements",
+    ],
   },
   {
     icon: ShieldCheck,
-    title: "Accessibility Matters",
-    description:
-      "Develop inclusive interfaces with WCAG compliance, semantic HTML, and keyboard navigation.",
+    title: "Reliability & Security First",
+    description: [
+      "Implement input validation and error handling",
+      "Design secure authentication and authorization flows",
+      "Ensure safe data handling across services",
+      "Follow best practices for API security",
+    ],
   },
   {
     icon: Workflow,
-    title: "Clean Engineering",
-    description:
-      "Write predictable, testable code with clear abstractions and strong separation of concerns.",
+    title: "Clean End-to-End Engineering",
+    description: [
+      "Maintain clear separation between UI, logic, and data layers",
+      "Write reusable and predictable code structures",
+      "Design consistent API contracts between frontend and backend",
+      "Focus on maintainability over quick fixes",
+    ],
   },
 ];
-
 export default function EngineeringMindset() {
   return (
-    <section id="mindset" className="relative py-32 px-6 overflow-hidden">
+    <section id="mindset" className="relative pt-32 px-6 overflow-hidden">
       {/* Glow */}
       <div className="absolute top-20 left-20 h-64 w-64 rounded-full blur-3xl opacity-10 animate-pulse" />
       <div className="absolute bottom-20 right-20 h-64 w-64 rounded-full blur-3xl opacity-10 animate-pulse" />
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-20">
         <div className="mb-20 text-center">
           <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
             Engineering Mindset
@@ -43,36 +58,23 @@ export default function EngineeringMindset() {
           <h2 className="text-5xl font-bold">Principles Behind Every Build</h2>
         </div>
 
-        <div className="relative">
+        <div className="relative flex flex-row gap-6">
           {principles.map((item, index) => {
             const Icon = item.icon;
-            const isRight = index % 2 === 0;
+            const isDown = index % 2 !== 0;
 
             return (
               <div
                 key={item.title}
-                className={`relative mb-20 flex ${
-                  isRight ? "justify-end" : "justify-start"
-                }`}
+                className={`relative flex ${isDown ? "mt-20" : "mb-20"}`}
               >
-                {/* Connection Line */}
-                {index !== principles.length - 1 && (
-                  <div
-                    className={`
-                      absolute top-full
-                      ${isRight ? "right-28" : "left-28"}
-                      h-20 border-l-2 border-dashed opacity-40
-                    `}
-                  />
-                )}
-
                 {/* Card */}
                 <div
-                  className="
+                  className={`
                     group
                     w-full
-                    max-w-md
-                    rounded-3xl
+                    max-w-2xl
+                    rounded-xl
                     border
                     p-6
                     backdrop-blur-sm
@@ -80,7 +82,7 @@ export default function EngineeringMindset() {
                     duration-500
                     hover:-translate-y-2
                     hover:scale-[1.02]
-                  "
+                  ${!isDown ? "bg-accent text-dark" : ""}`}
                 >
                   <div className="mb-4 flex items-center gap-4">
                     <div
@@ -93,15 +95,33 @@ export default function EngineeringMindset() {
                         group-hover:rotate-6
                       "
                     >
-                      <Icon size={24} />
+                      <Icon
+                        size={24}
+                        className={` ${!isDown ? "bg-accent text-dark" : ""}`}
+                      />
                     </div>
 
-                    <h3 className="text-xl font-semibold">{item.title}</h3>
+                    <h3
+                      className={`text-xl font-semibold ${isDown ? "text-accent" : ""}`}
+                    >
+                      {item.title}
+                    </h3>
                   </div>
-
-                  <p className="leading-relaxed opacity-75">
-                    {item.description}
-                  </p>
+                  {/* bullet points */}
+                  <div className="space-y-2 text-sm ">
+                    {item.description.map((desc, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center  gap-2"
+                      >
+                        <Circle
+                          size={10}
+                          className={` ${!isDown ? "fill-dark" : "fill-accent"}`}
+                        />
+                        <span>{desc}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
