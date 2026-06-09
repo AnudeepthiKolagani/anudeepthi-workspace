@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 
 const navItems = [
@@ -11,6 +11,30 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
+
+  useEffect(() => {
+    const sections = navItems.map((item) => document.querySelector(item.href));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        rootMargin: "-30% 0px -50% 0px",
+        threshold: 0,
+      },
+    );
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleScroll = (e, targetId) => {
     e.preventDefault();
@@ -28,8 +52,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full">
-      <nav className="max-w-8xl mt-4 flex mx-20 items-center justify-between rounded-lg px-6 py-4 shadow-lg transition-all duration-300">
+    <header className="bg-primary fixed top-0 left-0 z-50 w-full">
+      <nav className=" text-body max-w-8xl  flex mx-20 items-center justify-between rounded-lg px-6 py-4 shadow-lg transition-all duration-300">
         {/* Glow Layer */}
         <div className="absolute inset-0 rounded-lg opacity-50 blur-2xl pointer-events-none animate-pulse" />
 
@@ -37,7 +61,7 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => handleScroll(e, "#home")}
-          className="relative text-xl font-bold tracking-wide transition-transform duration-300 hover:scale-105"
+          className="relative text-2xl font-bold tracking-wide transition-transform duration-300 hover:scale-105 cursor-pointer"
         >
           Anudeepthi
         </a>
@@ -49,24 +73,55 @@ export default function Navbar() {
               key={item.label}
               href={item.href}
               onClick={(e) => handleScroll(e, item.href)}
-              className="relative text-sm font-medium transition-all duration-300 hover:-translate-y-0.5"
+              className={`relative text-lg font-medium transition-all duration-300 hover:-translate-y-0.5 ${activeSection === item.href ? "text-accent" : ""}`}
             >
+              {console.log({
+                activeSection,
+                currentHref: item.href,
+              })}
               {item.label}
+              {/* Underline */}
+              <span
+                className={`bg-accent
+              absolute
+              left-0
+              -bottom-1
+              h-[2px]
+              origin-left
+              transition-transform
+              duration-300
+              ${
+                activeSection === item.href
+                  ? "w-full scale-x-100"
+                  : "w-full scale-x-0 group-hover:scale-x-100"
+              }
+            `}
+              />
             </a>
           ))}
 
           {/* Theme Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 transition-all duration-300 hover:rotate-12"
+            className="group p-2 transition-all duration-300 hover:rotate-30 cursor-pointer"
             aria-label="Theme Toggle"
           >
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {darkMode ? (
+              <Sun
+                size={18}
+                className="transition-colors duration-300 group-hover:text-accent"
+              />
+            ) : (
+              <Moon
+                size={18}
+                className="transition-colors duration-300 group-hover:text-accent"
+              />
+            )}
           </button>
 
           {/* CTA */}
           <button
-            className="rounded-lg border px-5 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
+            className="rounded-lg border px-5 py-2 text-lg font-medium transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-accent hover:text-dark"
             onClick={(e) => handleScroll(e, "#contact")}
           >
             Hire Me
