@@ -90,7 +90,7 @@ export default function About() {
 
       <div className="mx-20">
         {/* Heading */}
-        <div className="mb-16">
+        <div className="mb-16 text-center">
           <p className="mb-3 text-sm uppercase tracking-[0.35em] opacity-60">
             About Me
           </p>
