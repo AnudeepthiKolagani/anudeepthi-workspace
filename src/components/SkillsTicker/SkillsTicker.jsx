@@ -17,7 +17,7 @@ const skills = [
 
 export default function SkillsTicker() {
   return (
-    <div className="absolute bottom-0 left-0 overflow-hidden border-t backdrop-blur-md">
+    <div className="mx-20 absolute bottom-1 left-0 overflow-hidden border rounded-lg backdrop-blur-md">
       <div className="skills-track flex">
         {[...skills, ...skills].map((skill, index) => (
           <div

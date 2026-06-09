@@ -14,6 +14,7 @@ import {
 } from "react-icons/si";
 
 import { Briefcase, Brain } from "lucide-react";
+import EngineeringMindset from "./EngineeringMindset";
 
 export default function About() {
   const skillGroups = [
@@ -179,6 +180,8 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <EngineeringMindset />
     </section>
   );
 }
