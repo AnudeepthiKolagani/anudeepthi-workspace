@@ -1,8 +1,12 @@
 import { ArrowRight, Download } from "lucide-react";
+import SkillsTicker from "./SkillsTicker/SkillsTicker";
 
 export default function Home() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden px-6">
+    <section
+      id="home"
+      className="relative min-h-screen w-full overflow-hidden px-6"
+    >
       {/* Glow Effects */}
       <div className="absolute left-20 top-32 h-72 w-72 rounded-full blur-3xl opacity-20 animate-pulse" />
       <div className="absolute right-20 bottom-20 h-80 w-80 rounded-full blur-3xl opacity-20 animate-pulse" />
@@ -51,6 +55,8 @@ export default function Home() {
         <div className="relative hidden lg:flex lg:w-9/12 items-center justify-center">
           <HeroAnimation />
         </div>
+
+        <SkillsTicker />
       </div>
     </section>
   );
