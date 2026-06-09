@@ -1,12 +1,11 @@
 import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <section>
-      <div className="text-center text-2xl ">
-        Welcome to Anudeepthi Portfolio
-      </div>
-    </section>
+    <div>
+      <NavBar />
+    </div>
   );
 }
 

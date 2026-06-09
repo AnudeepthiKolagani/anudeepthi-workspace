@@ -14,3 +14,7 @@
 
   --color-border: var(--border);
 }
+
+html {
+  scroll-behavior: smooth;
+}
