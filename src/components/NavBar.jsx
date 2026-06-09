@@ -65,7 +65,10 @@ export default function Navbar() {
           </button>
 
           {/* CTA */}
-          <button className="rounded-lg border px-5 py-2 text-sm font-medium transition-all duration-300 hover:scale-105">
+          <button
+            className="rounded-lg border px-5 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
+            onClick={(e) => handleScroll(e, "#contact")}
+          >
             Hire Me
           </button>
         </div>
