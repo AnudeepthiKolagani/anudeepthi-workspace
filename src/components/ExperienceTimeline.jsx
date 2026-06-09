@@ -126,7 +126,9 @@ export default function ExperienceTimeline() {
                     {/* Top Row */}
                     <div className="mb-6 flex items-start justify-between">
                       <div>
-                        <h3 className="text-2xl font-bold">{exp.role}</h3>
+                        <h3 className="text-2xl font-bold text-accent">
+                          {exp.role}
+                        </h3>
 
                         <p className="mt-2 opacity-70">{exp.company}</p>
                       </div>
@@ -136,9 +138,12 @@ export default function ExperienceTimeline() {
                           className="
                             rounded-full
                             border
+                            border-green-500
                             px-3
                             py-1
                             text-xs
+                            bg-green-300
+                            text-dark
                           "
                         >
                           Current
@@ -168,6 +173,7 @@ export default function ExperienceTimeline() {
                             px-3
                             py-1
                             text-sm
+                            border-light-border
                           "
                         >
                           {skill}
