@@ -1,6 +1,7 @@
 import { Send, ArrowUpRight, Mail } from "lucide-react";
 
 import { SiGithub, SiMedium } from "react-icons/si";
+import "./ContactSection.css";
 
 export default function ContactSection() {
   return (
@@ -24,8 +25,30 @@ export default function ContactSection() {
             want to connect, I'm always open to meaningful conversations.
           </p>
         </div>
-        <div className="mb-6 inline-flex rounded-full border px-4 py-2 text-sm">
-          Open to Freelance & Full-Time Roles
+
+        <div className="relative inline-flex overflow-hidden rounded-full p-px mb-8">
+          {/* Rotating Beam */}
+          <div className="absolute inset-0 animate-border-beam">
+            <div className="h-full w-100 bg-accent blur-lg" />
+          </div>
+
+          {/* Content */}
+          <span
+            className="
+                relative
+                z-10
+                inline-flex
+                rounded-full
+                bg-primary
+                px-4
+                py-2
+                text-sm
+                tracking-wide
+                backdrop-blur-md
+              "
+          >
+            Open to Freelance & Full-Time Roles
+          </span>
         </div>
 
         {/* Main Grid */}
@@ -66,6 +89,7 @@ export default function ContactSection() {
             className="
               rounded-3xl
               border
+              border-light-border
               p-8
               backdrop-blur-sm
               transition-all
@@ -73,7 +97,9 @@ export default function ContactSection() {
               hover:-translate-y-2
             "
           >
-            <h3 className="mb-8 text-2xl font-semibold">Send a Message</h3>
+            <h3 className="mb-8 text-2xl font-semibold text-accent">
+              Send a Message
+            </h3>
 
             <form className="space-y-5">
               <input
@@ -83,6 +109,7 @@ export default function ContactSection() {
                   w-full
                   rounded-2xl
                   border
+                   border-light-border
                   bg-transparent
                   px-5
                   py-4
@@ -97,6 +124,7 @@ export default function ContactSection() {
                   w-full
                   rounded-2xl
                   border
+                   border-light-border
                   bg-transparent
                   px-5
                   py-4
@@ -111,6 +139,7 @@ export default function ContactSection() {
                   w-full
                   rounded-2xl
                   border
+                   border-light-border
                   bg-transparent
                   px-5
                   py-4
@@ -126,6 +155,7 @@ export default function ContactSection() {
                   resize-none
                   rounded-2xl
                   border
+                   border-light-border
                   bg-transparent
                   px-5
                   py-4
@@ -145,6 +175,8 @@ export default function ContactSection() {
                   transition-all
                   duration-300
                   hover:-translate-y-1
+                  bg-accent
+                  text-dark
                 "
               >
                 Send Message
@@ -171,10 +203,14 @@ function ContactCard({ icon, title, subtitle, href }) {
         justify-between
         rounded-3xl
         border
+        border-light-border
         p-6
         transition-all
         duration-500
         hover:-translate-y-2
+        hover:bg-accent
+        hover:text-dark 
+
       "
     >
       <div className="flex items-center gap-5">
@@ -183,7 +219,7 @@ function ContactCard({ icon, title, subtitle, href }) {
         <div>
           <h4 className="font-semibold">{title}</h4>
 
-          <p className="text-sm opacity-70">{subtitle}</p>
+          <p className="text-sm opacity-80">{subtitle}</p>
         </div>
       </div>
 

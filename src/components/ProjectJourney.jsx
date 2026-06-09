@@ -112,17 +112,17 @@ function ProjectCard({ project, reverse }) {
           />
 
           {/* Impact Card */}
-          <div className="absolute bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
-            <p className="text-xs opacity-60">Impact</p>
+          <div className="absolute bg-accent text-dark bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
+            <p className="text-sm">Impact</p>
 
             <p className="font-semibold">{project.impact}</p>
           </div>
         </div>
 
         {/* Floating Project Number */}
-        <div className="absolute -top-6 -right-6 rounded-full border px-6 py-3 text-xl font-bold backdrop-blur-md">
+        {/* <div className="absolute -top-6 -right-6 rounded-full border px-6 py-3 text-xl font-bold backdrop-blur-md">
           {project.id}
-        </div>
+        </div> */}
       </div>
 
       {/* Content */}
@@ -131,7 +131,7 @@ function ProjectCard({ project, reverse }) {
           Featured Project
         </p>
 
-        <h3 className="mb-6 text-4xl font-bold">{project.title}</h3>
+        <h3 className="mb-6 text-4xl font-bold text-accent">{project.title}</h3>
 
         <p className="mb-8 max-w-xl leading-relaxed opacity-80">
           {project.description}
@@ -145,6 +145,7 @@ function ProjectCard({ project, reverse }) {
               className="
                 rounded-full
                 border
+                border-light-border
                 px-4
                 py-2
                 text-sm
@@ -171,7 +172,9 @@ function ProjectCard({ project, reverse }) {
               py-3
               transition-all
               duration-300
-              hover:-translate-y-1
+              bg-accent
+              text-dark
+              cursor-pointer
             "
           >
             Live Demo
@@ -189,7 +192,9 @@ function ProjectCard({ project, reverse }) {
               py-3
               transition-all
               duration-300
-              hover:-translate-y-1
+              hover:bg-accent
+              hover:text-dark
+              cursor-pointer
             "
           >
             GitHub

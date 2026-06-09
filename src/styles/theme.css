@@ -1,29 +1,69 @@
+/* ==========================================
+   DARK THEME (Default)
+========================================== */
+
 :root {
-  --background: #013d35;
-  --surface: #0b4b42;
-  --surface-alt: #02574c;
+  /* Backgrounds */
+  --primary: #171715;
+  --dark: #000000;
+  --secondary-dark: #2a2a2a;
 
-  --foreground: #f5e6ab;
-  --foreground-muted: #d9cf9f;
-  --foreground-subtle: #a8b7b3;
+  /* Text */
+  --heading: #ffffff;
+  --sub-heading: #d6d6d6;
+  --body: #ffffff;
 
-  --brand: #f5e6ab;
-  --brand-hover: #fff0bc;
+  /* Brand */
+  --primary-accent: #d4a017;
+  --secondary-accent: #84754f;
 
-  --border: rgba(245, 230, 171, 0.2);
+  /* Buttons */
+  --btn-bg: #d4a017;
+  --btn-text: #1c1c1c;
+  --btn-border: #d4a017;
+  --btn-hover: #e5b93c;
+
+  /* Borders */
+  --light-border: #3b3d37;
+  --border-hover: #4a4a4a;
+
+  /* Cards */
+  --card-bg: #252525;
+
+  /* Effects */
+  --glow: rgba(212, 160, 23, 0.25);
 }
 
-[data-theme="ligh"] {
-  --background: #fffdf4;
-  --surface: #ffffff;
-  --surface-alt: #f5e6ab;
+/* ==========================================
+   LIGHT THEME
+========================================== */
 
-  --foreground: #013d35;
-  --foreground-muted: #365952;
-  --foreground-subtle: #6b7d79;
+[data-theme="light"] {
+  /* Backgrounds */
+  --primary-dark: #f8f8f6;
+  --secondary-dark: #ffffff;
 
-  --brand: #013d35;
-  --brand-hover: #02574c;
+  /* Text */
+  --heading: #1c1c1c;
+  --sub-heading: #4f4f4f;
+  --body: #666666;
 
-  --border: #d9d7c8;
+  /* Brand */
+  --primary-accent: #d4a017;
+
+  /* Buttons */
+  --btn-bg: #d4a017;
+  --btn-text: #ffffff;
+  --btn-border: #d4a017;
+  --btn-hover: #c99514;
+
+  /* Borders */
+  --border: #e5e5e5;
+  --border-hover: #d8d8d8;
+
+  /* Cards */
+  --card-bg: #ffffff;
+
+  /* Effects */
+  --glow: rgba(212, 160, 23, 0.15);
 }
