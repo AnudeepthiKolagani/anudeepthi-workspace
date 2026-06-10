@@ -8,7 +8,7 @@ import ContactSection from "./components/ContactSection";
 
 function App() {
   return (
-    <div>
+    <div className="bg-dark text-body">
       <NavBar />
       <Home />
       <About />

@@ -1,0 +1,25 @@
+.badge-beam {
+  position: relative;
+  display: inline-flex;
+  padding: 1px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.badge-beam::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: var(--primary-accent);
+  filter: blur(10px);
+  animation: orbit 4s linear infinite;
+}
+
+.badge-content {
+  position: relative;
+  z-index: 1;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  background: var(--primary-dark);
+}
