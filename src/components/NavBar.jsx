@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
-
+import { motion } from "motion/react";
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "About Me", href: "#about" },
@@ -58,16 +58,56 @@ export default function Navbar() {
         <div className="absolute inset-0 rounded-lg opacity-50 blur-2xl pointer-events-none animate-pulse" />
 
         {/* Logo / Name */}
-        <a
+        <motion.a
           href="#home"
           onClick={(e) => handleScroll(e, "#home")}
-          className="relative text-2xl font-bold tracking-wide transition-transform duration-300 hover:scale-105 cursor-pointer"
+          className="
+    relative
+    inline-block
+    text-2xl
+    font-bold
+    tracking-wide
+    bg-gradient-to-r
+    from-accent
+    via-white
+    to-secondary-accent
+    bg-[length:250%_100%]
+    bg-clip-text
+    text-transparent
+  "
+          initial={{ opacity: 0, y: -20 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          whileHover={{
+            scale: 1.05,
+            y: -2,
+          }}
+          transition={{
+            opacity: { duration: 0.8 },
+            y: { duration: 0.8 },
+            backgroundPosition: {
+              duration: 5,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            scale: {
+              type: "spring",
+              stiffness: 300,
+              damping: 15,
+            },
+          }}
         >
           Anudeepthi
-        </a>
-
+        </motion.a>
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
+        <motion.div
+          className="hidden items-center gap-8 md:flex"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -126,13 +166,12 @@ export default function Navbar() {
           >
             Hire Me
           </button>
-        </div>
-
+        </motion.div>
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-
+     
         {/* Mobile Menu */}
         {isOpen && (
           <div className="absolute left-0 right-0 top-20 mx-4 rounded-3xl border backdrop-blur-md p-6 md:hidden">
