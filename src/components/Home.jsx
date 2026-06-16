@@ -1,6 +1,27 @@
 import { ArrowUpRight, Download } from "lucide-react";
 import SkillsTicker from "./SkillsTicker/SkillsTicker";
 import RolesTyping from "./RolesTyping";
+import { motion } from "motion/react";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, x: -30 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
 
 export default function Home() {
   return (
@@ -12,10 +33,18 @@ export default function Home() {
       <div className="absolute left-20 top-32 h-72 w-72 rounded-full blur-3xl opacity-20 animate-pulse" />
       <div className="absolute right-20 bottom-20 h-80 w-80 rounded-full blur-3xl opacity-20 animate-pulse" />
 
-      <div className="flex min-h-screen mx-20 items-center">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="flex min-h-screen mx-20 items-center"
+      >
         {/* LEFT SECTION - 30% */}
-        <div className="w-full lg:w-5/12 space-y-6">
-          <div className="relative inline-flex overflow-hidden rounded-full p-[1px]">
+        <motion.div className="w-full lg:w-5/12 space-y-6" variants={item}>
+          <motion.div
+            variants={item}
+            className="relative inline-flex overflow-hidden rounded-full p-[1px]"
+          >
             {/* Rotating Beam */}
             <div className="absolute inset-0 animate-border-beam">
               <div className="h-full w-100 bg-accent blur-lg" />
@@ -23,6 +52,7 @@ export default function Home() {
 
             {/* Content */}
             <span
+              variants={item}
               className="
                 relative
                 z-10
@@ -38,18 +68,27 @@ export default function Home() {
             >
               Software Engineer • Full Stack Developer
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+          <motion.h1
+            variants={item}
+            className="text-5xl md:text-6xl font-bold leading-tight"
+          >
             Hey, I'm <span className="text-accent">Anudeepthi</span>
-          </h1>
+          </motion.h1>
 
-          <div className="text-lg flex items-center gap-2 ">
+          <motion.div
+            variants={item}
+            className="text-lg flex items-center gap-2 "
+          >
             I am a
             <RolesTyping />
-          </div>
+          </motion.div>
 
-          <p className="max-w-xl text-base text-body opacity-70 leading-relaxed">
+          <motion.p
+            variants={item}
+            className="max-w-xl text-base text-body opacity-70 leading-relaxed"
+          >
             I design and build modern web applications using{" "}
             <span className="font-bold">React, Node.js, Express, MongoDB.</span>
             <div>
@@ -57,9 +96,9 @@ export default function Home() {
               systems, Modern React applications, Reusable architectures, and
               High-performance production-grade software.
             </div>
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-4">
+          <motion.div variants={item} className="flex flex-wrap gap-4">
             <a
               href="#projects"
               className="bg-accent font-semibold text-dark group flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:translate-x-1 cursor-pointer"
@@ -75,8 +114,8 @@ export default function Home() {
               Resume
               <Download size={18} />
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* RIGHT SECTION - 70% */}
         <div className="relative hidden lg:flex lg:w-9/12 items-center justify-center">
@@ -84,7 +123,7 @@ export default function Home() {
         </div>
 
         <SkillsTicker />
-      </div>
+      </motion.div>
     </section>
   );
 }
