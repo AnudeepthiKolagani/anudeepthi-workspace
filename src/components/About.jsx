@@ -15,7 +15,6 @@ import {
 
 import { FaAws } from "react-icons/fa";
 import { Clock3, ArrowRight } from "lucide-react";
-import EngineeringMindset from "./EngineeringMindset";
 import { motion } from "motion/react";
 import { BiBullseye } from "react-icons/bi";
 import { DiMysql, DiRedis } from "react-icons/di";
@@ -435,7 +434,6 @@ export default function About() {
         </motion.div>
       </motion.div>
 
-      <EngineeringMindset />
     </section>
   );
 }
