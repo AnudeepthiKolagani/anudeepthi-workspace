@@ -3,10 +3,21 @@ import {
   useMotionValueEvent,
   useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
 // import { Zap, Layers3, ShieldCheck, Workflow } from "lucide-react";
 import { useRef, useState } from "react";
 
+export const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 // const principles = [
 //   {
 //     icon: Zap,
@@ -84,7 +95,7 @@ const TagCard = ({
   });
 
   return (
-    <div
+    <motion.div
       ref={ref}
       data-aos={aosType || "fade-up"}
       data-aos-delay={aosDelay}
@@ -129,7 +140,7 @@ const TagCard = ({
           {text}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -146,6 +157,10 @@ export default function EngineeringMindset() {
     damping: 20,
     restDelta: 0.001,
   });
+  const card1Opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const card2Opacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 1]);
+  const card3Opacity = useTransform(scrollYProgress, [0.5, 0.7], [0, 1]);
+  const card4Opacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
 
   return (
     <section
@@ -159,10 +174,24 @@ export default function EngineeringMindset() {
           data-aos="fade-up"
           className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0"
         >
-          <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white"
+          >
             Engineering Principles
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative">
+          </motion.div>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative"
+          >
             How I approach building software that lasts
             {/* Hand-drawn arrow */}
             {/* <svg
@@ -187,7 +216,7 @@ export default function EngineeringMindset() {
                 strokeLinejoin="round"
               />
             </svg> */}
-          </h2>
+          </motion.h2>
           <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
             The ideas that shape how I design systems, write code, and make
             engineering decisions.
@@ -267,53 +296,77 @@ export default function EngineeringMindset() {
         </svg>
         {/* Cards Container */}
         <div className="flex flex-col gap-8 md:gap-12 items-center md:block relative z-10 w-full pt-4 md:pt-0 pb-12 md:pb-0">
-          <TagCard
-            number="01"
-            title="Understand Before Building"
-            text="I prefer understanding the problem deeply before writing code.Good engineering starts with clarity—understanding business goals, user workflows, and system constraints before choosing tools or implementation details."
-            className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
-            aosType="fade-left"
-            aosDelay="100"
-            pathLength={pathLength}
-            containerRef={containerRef}
-          />
-
-          <TagCard
-            number="02"
-            title="Think in Systems"
-            text="I rarely look at a feature in isolation.
+          <motion.div
+            style={{
+              opacity: card1Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="01"
+              title="Understand Before Building"
+              text="I prefer understanding the problem deeply before writing code.Good engineering starts with clarity—understanding business goals, user workflows, and system constraints before choosing tools or implementation details."
+              className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
+              aosType="fade-left"
+              aosDelay="100"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card2Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="02"
+              title="Think in Systems"
+              text="I rarely look at a feature in isolation.
 Every API, database change, or frontend decision influences performance, maintainability, and future development. I try to optimize for the entire system, not a single component."
-            className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
-            aosType="fade-right"
-            aosDelay="200"
-            pathLength={pathLength}
-            containerRef={containerRef}
-          />
-
-          <TagCard
-            number="03"
-            title="Build for Scale"
-            text="I focus on creating software that continues to work as usage grows.
+              className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
+              aosType="fade-right"
+              aosDelay="200"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card3Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="03"
+              title="Build for Scale"
+              text="I focus on creating software that continues to work as usage grows.
 From asynchronous processing with Redis and BullMQ to efficient database design and caching strategies, I enjoy solving scalability challenges before they become production issues."
-            className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
-            aosType="fade-left"
-            aosDelay="300"
-            pathLength={pathLength}
-            containerRef={containerRef}
-          />
-
-          <TagCard
-            number="04"
-            title="Own the Outcome"
-            text="For me, engineering doesn't end after deployment.
+              className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+              aosType="fade-left"
+              aosDelay="300"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card4Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="04"
+              title="Own the Outcome"
+              text="For me, engineering doesn't end after deployment.
 I believe in taking responsibility for reliability, maintainability, monitoring, and continuous improvement long after a feature reaches production."
-            className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
-            aosType="fade-right"
-            aosDelay="400"
-            pathLength={pathLength}
-            containerRef={containerRef}
-          />
-
+              className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
+              aosType="fade-right"
+              aosDelay="400"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
           {/* Hand-drawn end text */}
           <div
             data-aos="fade-in"
