@@ -1,8 +1,19 @@
 import { Send, ArrowUpRight, Mail } from "lucide-react";
 
 import { SiGithub, SiMedium } from "react-icons/si";
+import { motion } from "motion/react";
 import "./ContactSection.css";
 
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 70,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 export default function ContactSection() {
   return (
     <section id="contact" className="relative overflow-hidden px-6 py-32">
@@ -14,19 +25,49 @@ export default function ContactSection() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-20 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60"
+          >
             Contact
-          </p>
+          </motion.p>
 
-          <h2 className="text-5xl font-bold">Let's Build Something Great</h2>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl font-bold"
+          >
+            Let's Build Something Great
+          </motion.h2>
 
-          <p className="mx-auto mt-6 max-w-2xl opacity-70">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto mt-6 max-w-2xl opacity-70"
+          >
             Whether you have a project idea, a freelance opportunity, or simply
             want to connect, I'm always open to meaningful conversations.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="relative inline-flex overflow-hidden rounded-full p-px mb-8">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative inline-flex overflow-hidden rounded-full p-px mb-8"
+        >
           {/* Rotating Beam */}
           <div className="absolute inset-0 animate-border-beam">
             <div className="h-full w-100 bg-accent blur-lg" />
@@ -49,7 +90,7 @@ export default function ContactSection() {
           >
             Open to Freelance & Full-Time Roles
           </span>
-        </div>
+        </motion.div>
 
         {/* Main Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
@@ -97,11 +138,22 @@ export default function ContactSection() {
               hover:-translate-y-2
             "
           >
-            <h3 className="mb-8 text-2xl font-semibold text-accent">
+            <motion.h3 variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }} className="mb-8 text-2xl font-semibold text-accent">
               Send a Message
-            </h3>
+            </motion.h3>
 
-            <form className="space-y-5">
+            <motion.form
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="space-y-5"
+            >
               <input
                 type="text"
                 placeholder="Your Name"
@@ -182,7 +234,7 @@ export default function ContactSection() {
                 Send Message
                 <Send size={18} />
               </button>
-            </form>
+            </motion.form>
           </div>
         </div>
       </div>
@@ -192,7 +244,12 @@ export default function ContactSection() {
 
 function ContactCard({ icon, title, subtitle, href }) {
   return (
-    <a
+    <motion.a
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -232,6 +289,6 @@ function ContactCard({ icon, title, subtitle, href }) {
           group-hover:-translate-y-1
         "
       />
-    </a>
+    </motion.a>
   );
 }
