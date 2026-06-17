@@ -5,9 +5,9 @@ const ROLES = [
   2000,
   "< Full Stack Engineer />",
   2000,
-  "< FrontEnd Engineer />",
-  2000,
   "< Backend Engineer />",
+  2000,
+  "< React Developer />"
 ];
 export default function RolesTyping() {
   return (

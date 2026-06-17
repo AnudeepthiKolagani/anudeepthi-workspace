@@ -66,7 +66,7 @@ export default function Home() {
                 backdrop-blur-md
               "
             >
-              Software Engineer • Full Stack Developer
+              Software Engineer • Full Stack Engineer
             </span>
           </motion.div>
 
@@ -79,31 +79,42 @@ export default function Home() {
 
           <motion.div
             variants={item}
-            className="text-lg flex items-center gap-2 "
+            className="text-xl flex items-center gap-2 "
           >
             I am a
             <RolesTyping />
           </motion.div>
 
-          <motion.p
-            variants={item}
-            className="max-w-xl text-base text-body opacity-70 leading-relaxed"
-          >
-            I design and build modern web applications using{" "}
-            <span className="font-bold">React, Node.js, Express, MongoDB.</span>
-            <div>
-              Scalable frontend architectures, Building scalable backend
-              systems, Modern React applications, Reusable architectures, and
-              High-performance production-grade software.
-            </div>
-          </motion.p>
+          {/* Description */}
+          <motion.div variants={item} className="space-y-4">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              I don't just build features —
+              <span className="font-semibold text-foreground pl-1">
+                I take ownership of outcomes.
+              </span>
+            </p>
+
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              Over the last 3+ years, I've worked across the stack using{" "}
+              <span className="font-bold">
+                React, Node.js, MongoDB, MySQL, Redis, and AWS,
+              </span>{" "}
+              turning requirements into scalable products, designing reliable
+              systems.
+            </p>
+
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              I've spent the last 3 years building systems that are designed{" "}
+              <span className="font-bold">not only to work today, but to scale tomorrow.</span>
+            </p>
+          </motion.div>
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <a
               href="#projects"
               className="bg-accent font-semibold text-dark group flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:translate-x-1 cursor-pointer"
             >
-              View Work
+              Explore My Work
               <ArrowUpRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -111,7 +122,7 @@ export default function Home() {
             </a>
 
             <button className="text-accent font-semibold flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-accent hover:text-dark">
-              Resume
+              Download Resume
               <Download size={18} />
             </button>
           </motion.div>
