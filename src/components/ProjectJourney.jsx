@@ -1,4 +1,5 @@
 import { Link, ExternalLink } from "lucide-react";
+import { motion } from "motion/react";
 
 const projects = [
   {
@@ -37,10 +38,20 @@ const projects = [
     impact: "Reusable scalable architecture",
   },
 ];
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 70,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 export default function ProjectJourney() {
   return (
-    <section id="projects" className="relative overflow-hidden py-32 px-6">
+    <section id="projects" className="relative overflow-hidden py-20 px-6">
       {/* Glow */}
       <div className="absolute top-20 left-10 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
 
@@ -49,13 +60,27 @@ export default function ProjectJourney() {
       <div className="mx-20">
         {/* Heading */}
         <div className="mb-24 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-3 text-sm uppercase tracking-[0.2em] opacity-60"
+          >
             Selected Work
-          </p>
+          </motion.p>
 
-          <h2 className="text-5xl font-bold">
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl font-bold"
+          >
             Projects That Define My Journey
-          </h2>
+          </motion.h2>
         </div>
 
         {/* Projects */}
@@ -75,7 +100,7 @@ export default function ProjectJourney() {
 
 function ProjectCard({ project, reverse }) {
   return (
-    <div
+    <motion.div
       className={`
         relative
         grid
@@ -87,7 +112,12 @@ function ProjectCard({ project, reverse }) {
     >
       {/* Image */}
       <div className="group relative">
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="
       relative
       overflow-hidden
@@ -117,7 +147,7 @@ function ProjectCard({ project, reverse }) {
 
             <p className="font-semibold">{project.impact}</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Floating Project Number */}
         {/* <div className="absolute -top-6 -right-6 rounded-full border px-6 py-3 text-xl font-bold backdrop-blur-md">
@@ -126,19 +156,42 @@ function ProjectCard({ project, reverse }) {
       </div>
 
       {/* Content */}
-      <div>
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] opacity-60">
+      <motion.div>
+        {/* <p className="mb-4 text-sm uppercase tracking-[0.3em] opacity-60">
           Featured Project
-        </p>
+        </p> */}
 
-        <h3 className="mb-6 text-4xl font-bold text-accent">{project.title}</h3>
+        <motion.h3
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 text-4xl font-bold text-accent"
+        >
+          {project.title}
+        </motion.h3>
 
-        <p className="mb-8 max-w-xl leading-relaxed opacity-80">
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 max-w-xl leading-relaxed opacity-80"
+        >
           {project.description}
-        </p>
+        </motion.p>
 
         {/* Tech Stack */}
-        <div className="mb-8 flex flex-wrap gap-3">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex flex-wrap gap-3"
+        >
           {project.tech.map((skill) => (
             <span
               key={skill}
@@ -157,10 +210,17 @@ function ProjectCard({ project, reverse }) {
               {skill}
             </span>
           ))}
-        </div>
+        </motion.div>
 
         {/* Buttons */}
-        <div className="flex gap-4">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex gap-4"
+        >
           <button
             className="
               flex
@@ -200,8 +260,8 @@ function ProjectCard({ project, reverse }) {
             GitHub
             <Link size={18} />
           </button>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }
