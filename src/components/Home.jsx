@@ -40,9 +40,16 @@ export default function Home() {
         className="flex min-h-screen mx-20 items-center"
       >
         {/* LEFT SECTION - 30% */}
-        <motion.div className="w-full lg:w-5/12 space-y-6" variants={item}>
+        <motion.div
+          className="w-full lg:w-5/12 space-y-6"
+          variants={item}
+          initial="hidden"
+          animate="show"
+        >
           <motion.div
             variants={item}
+            initial="hidden"
+            animate="show"
             className="relative inline-flex overflow-hidden rounded-full p-[1px]"
           >
             {/* Rotating Beam */}
@@ -53,6 +60,8 @@ export default function Home() {
             {/* Content */}
             <span
               variants={item}
+              initial="hidden"
+              animate="show"
               className="
                 relative
                 z-10
@@ -72,6 +81,8 @@ export default function Home() {
 
           <motion.h1
             variants={item}
+            initial="hidden"
+            animate="show"
             className="text-5xl md:text-6xl font-bold leading-tight"
           >
             Hey, I'm <span className="text-accent">Anudeepthi</span>
@@ -79,6 +90,8 @@ export default function Home() {
 
           <motion.div
             variants={item}
+            initial="hidden"
+            animate="show"
             className="text-xl flex items-center gap-2 "
           >
             I am a
@@ -86,7 +99,12 @@ export default function Home() {
           </motion.div>
 
           {/* Description */}
-          <motion.div variants={item} className="space-y-4">
+          <motion.div
+            variants={item}
+            initial="hidden"
+            animate="show"
+            className="space-y-4"
+          >
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               I don't just build features —
               <span className="font-semibold text-foreground pl-1">
@@ -105,11 +123,18 @@ export default function Home() {
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               I've spent the last 3 years building systems that are designed{" "}
-              <span className="font-bold">not only to work today, but to scale tomorrow.</span>
+              <span className="font-bold">
+                not only to work today, but to scale tomorrow.
+              </span>
             </p>
           </motion.div>
 
-          <motion.div variants={item} className="flex flex-wrap gap-4">
+          <motion.div
+            variants={item}
+            initial="hidden"
+            animate="show"
+            className="flex flex-wrap gap-4"
+          >
             <a
               href="#projects"
               className="bg-accent font-semibold text-dark group flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:translate-x-1 cursor-pointer"
