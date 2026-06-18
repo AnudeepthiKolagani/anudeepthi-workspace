@@ -4,38 +4,34 @@ import { motion } from "motion/react";
 const projects = [
   {
     id: "01",
-    title: "Lucy Platform",
+    title: "AI DOC Assistant",
     description:
-      "Developed scalable React-based interfaces, integrated APIs, improved accessibility compliance, and optimized application performance.",
+      "Built an AI-powered document assistant that enables users to upload documents, store them securely in cloud storage, and interact with their content through an intelligent chat interface similar to NotebookLM.",
 
-    tech: ["React", "JavaScript", "Redux", "Tailwind", "REST APIs"],
+    tech: [
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "AWS S3",
+    ],
 
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692",
-    impact: "WCAG accessibility improvements",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    impact: "AI-powered document analysis and retrieval",
+    repoLink: "https://github.com/AnudeepthiKolagani/ai-doc-assistant-web.git",
   },
-
   {
     id: "02",
     title: "Developer Portfolio",
     description:
-      "A modern portfolio showcasing projects, engineering principles, animations, accessibility, and responsive design.",
+      "Designed and developed a modern portfolio showcasing projects, engineering practices, accessibility standards, responsive design, and interactive animations.",
 
-    tech: ["React", "Vite", "Tailwind", "Framer Motion"],
+    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
 
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
     impact: "95+ Lighthouse performance score",
-  },
-
-  {
-    id: "03",
-    title: "Task Management Platform",
-    description:
-      "Built a productivity-focused application with role-based access, reusable components, and scalable architecture.",
-
-    tech: ["MERN", "MongoDB", "Node.js", "Express"],
-
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-    impact: "Reusable scalable architecture",
+    repoLink:""
   },
 ];
 const fadeUp = {
@@ -142,11 +138,11 @@ function ProjectCard({ project, reverse }) {
           />
 
           {/* Impact Card */}
-          <div className="absolute bg-accent text-dark bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
+          {/* <div className="absolute bg-accent text-dark bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
             <p className="text-sm">Impact</p>
 
             <p className="font-semibold">{project.impact}</p>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Floating Project Number */}
@@ -233,7 +229,7 @@ function ProjectCard({ project, reverse }) {
               transition-all
               duration-300
               bg-accent
-              text-dark
+              text-primary
               cursor-pointer
             "
           >
@@ -253,7 +249,7 @@ function ProjectCard({ project, reverse }) {
               transition-all
               duration-300
               hover:bg-accent
-              hover:text-dark
+              hover:text-primary
               cursor-pointer
             "
           >
