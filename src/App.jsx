@@ -8,7 +8,7 @@ import ContactSection from "./components/ContactSection";
 import EngineeringMindset from "./components/EngineeringMindset";
 function App() {
   return (
-    <div className="bg-dark text-body">
+    <div className="bg-primary text-dark">
       <NavBar />
       <Home />
       <About />

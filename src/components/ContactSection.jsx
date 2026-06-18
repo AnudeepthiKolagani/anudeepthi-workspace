@@ -107,14 +107,14 @@ export default function ContactSection() {
               icon={<SiGithub size={28} />}
               title="GitHub"
               subtitle="Projects & contributions"
-              href="https://www.linkedin.com/in/anudeepthi-kolagani/"
+              href="https://github.com/AnudeepthiKolagani"
             />
 
             <ContactCard
               icon={<SiMedium size={28} />}
               title="Medium"
               subtitle="Articles & insights"
-              href="https://www.linkedin.com/in/anudeepthi-kolagani/"
+              href="https://medium.com/@AnudeepthiKolagani"
             />
 
             <ContactCard
@@ -138,11 +138,14 @@ export default function ContactSection() {
               hover:-translate-y-2
             "
           >
-            <motion.h3 variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }} className="mb-8 text-2xl font-semibold text-accent">
+            <motion.h3
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 text-2xl font-semibold text-accent"
+            >
               Send a Message
             </motion.h3>
 
@@ -228,7 +231,8 @@ export default function ContactSection() {
                   duration-300
                   hover:-translate-y-1
                   bg-accent
-                  text-dark
+                  text-primary
+                  cursor-pointer
                 "
               >
                 Send Message
@@ -266,7 +270,7 @@ function ContactCard({ icon, title, subtitle, href }) {
         duration-500
         hover:-translate-y-2
         hover:bg-accent
-        hover:text-dark 
+        hover:text-primary 
 
       "
     >

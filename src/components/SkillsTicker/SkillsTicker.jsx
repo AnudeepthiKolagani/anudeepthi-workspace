@@ -35,7 +35,7 @@ const skills = [
 
 export default function SkillsTicker() {
   return (
-    <div className="absolute bottom-1 left-0 right-0 mx-20 overflow-hidden backdrop-blur-md">
+    <div className="absolute bottom-1 left-0 right-0  overflow-hidden backdrop-blur-md">
       <div className="skills-track flex w-max">
         {[...skills, ...skills].map((skill, index) => {
           const Icon = skill.icon;
@@ -43,9 +43,9 @@ export default function SkillsTicker() {
           return (
             <div
               key={index}
-              className="mx-4 my-4 flex items-center gap-2 whitespace-nowrap rounded-full border border-secondary-accent px-7 py-2 text-base"
+              className="mx-4 my-4 flex items-center gap-2 whitespace-nowrap rounded-full border bg-secondary-accent/50 px-7 py-2 text-base text-primary"
             >
-              <Icon className="text-lg text-accent" />
+              <Icon className="text-lg text-dark" />
               <span>{skill.name}</span>
             </div>
           );

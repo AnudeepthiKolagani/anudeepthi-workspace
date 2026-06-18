@@ -28,9 +28,39 @@ const item = {
 };
 
 export default function Home() {
+  const homeRef = useRef(null);
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const section = homeRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Home section is not visible
+        if (!entry.isIntersecting) {
+          const video = videoRef.current;
+
+          if (video) {
+            video.pause();
+            setIsPlaying(false);
+          }
+        }
+      },
+      {
+        threshold: 0.5, // 50% of home should be visible
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     AOS.init({
@@ -42,7 +72,7 @@ export default function Home() {
 
   const toggleVideo = (e) => {
     e.stopPropagation();
-    if (videoRef.current) {
+    if (videoRef.current.paused) {
       videoRef.current.play();
       setIsPlaying(true);
     } else {
@@ -52,7 +82,8 @@ export default function Home() {
   };
   return (
     <section
-      id="#home"
+      id="home"
+      ref={homeRef}
       className="relative w-full h-screen overflow-hidden bg-black"
     >
       <video
@@ -70,28 +101,28 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex min-h-screen mx-20 items-center"
+        className="relative flex min-h-screen mx-20 items-center"
       >
         {/* LEFT SECTION - 30% */}
         <motion.div
-          className="absolute z-0 w-full lg:w-5/12 space-y-6"
+          className="z-10 w-full lg:w-5/12 space-y-6"
           variants={item}
           initial="hidden"
           animate="show"
         >
-          <motion.div
+          {/* <motion.div
             variants={item}
             initial="hidden"
             animate="show"
             className="relative inline-flex overflow-hidden rounded-full p-[1px]"
-          >
-            {/* Rotating Beam */}
-            <div className="absolute inset-0 animate-border-beam">
-              <div className="h-full w-100 bg-accent blur-lg" />
-            </div>
+          > */}
+          {/* Rotating Beam */}
+          {/* <div className="absolute inset-0 animate-border-beam">
+              <div className="h-full w-100 bg-primary blur-lg" />
+            </div> */}
 
-            {/* Content */}
-            <span
+          {/* Content */}
+          {/* <span
               variants={item}
               initial="hidden"
               animate="show"
@@ -100,7 +131,8 @@ export default function Home() {
                 z-10
                 inline-flex
                 rounded-full
-                bg-primary
+                text-dark
+                font-bold
                 px-4
                 py-2
                 text-sm
@@ -110,15 +142,15 @@ export default function Home() {
             >
               Software Engineer • Full Stack Engineer
             </span>
-          </motion.div>
+          </motion.div> */}
 
           <motion.h1
             variants={item}
             initial="hidden"
             animate="show"
-            className="text-5xl md:text-6xl font-bold leading-tight"
+            className="text-5xl md:text-6xl font-semibold leading-tight"
           >
-            Hey, I'm <span className="text-accent">Anudeepthi</span>
+            Hey, I'm <span className="font-bold">Anudeepthi</span>
           </motion.h1>
 
           <motion.div
@@ -127,7 +159,6 @@ export default function Home() {
             animate="show"
             className="text-xl flex items-center gap-2 "
           >
-            I am a
             <RolesTyping />
           </motion.div>
 
@@ -170,7 +201,7 @@ export default function Home() {
           >
             <a
               href="#projects"
-              className="bg-accent font-semibold text-dark group flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:translate-x-1 cursor-pointer"
+              className="bg-primary font-semibold text-dark group flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:translate-x-1 cursor-pointer"
             >
               Explore My Work
               <ArrowUpRight
@@ -179,7 +210,7 @@ export default function Home() {
               />
             </a>
 
-            <button className="text-accent font-semibold flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-accent hover:text-dark">
+            <button className="text-primary font-semibold flex items-center gap-2 rounded-lg border px-6 py-3 transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-primary hover:text-dark">
               Download Resume
               <Download size={18} />
             </button>
@@ -189,10 +220,10 @@ export default function Home() {
         <div
           data-aos="zoom-in"
           data-aos-delay="600"
-          className="mt-8 right-0 md:mt-0 flex flex-row md:flex-col items-center gap-2 md:gap-3 cursor-pointer group self-start md:self-auto"
           onClick={toggleVideo}
+          className="w-full lg:w-7/12 flex justify-end items-center"
         >
-          <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">
+          <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 hover: cursor-pointer group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">
             {!isPlaying || isMuted ? (
               // Play Icon
               <svg

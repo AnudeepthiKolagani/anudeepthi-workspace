@@ -3,31 +3,40 @@ import { motion } from "motion/react";
 
 const experiences = [
   {
-    period: "2024 - Present",
-    role: "Frontend Developer",
-    company: "Lucy Platform",
+    period: "2025 - Present",
+    role: "Engineer",
+    company: "Veltris",
     current: true,
     description:
-      "Developing modern React applications, enhancing accessibility, and building scalable UI systems.",
-    skills: ["React", "Redux", "JavaScript", "Tailwind", "REST APIs"],
+      "Developing high-performance React applications, implementing WCAG accessibility standards, and designing scalable component-based UI architectures.",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Redux",
+      "Tailwind",
+      "REST APIs",
+    ],
     achievements: [
-      "Improved WCAG accessibility compliance",
-      "Created reusable component libraries",
-      "Optimized frontend performance",
+      "Enhanced accessibility standards by implementing WCAG guidelines across key user interfaces.",
+      "Developed a scalable component architecture with reusable, responsive, and interactive React components.",
+      "Improved application performance through lazy loading, code splitting, React.memo, useMemo, useCallback, and optimized state management, resulting in faster load times and smoother UI interactions.",
     ],
   },
   {
-    period: "2023 - 2024",
-    role: "Full Stack Engineer",
-    company: "Project Experience",
+    period: "2023 - 2025",
+    role: "Associate Engineer",
+    company: "Veltris",
     current: false,
     description:
-      "Designed and developed full-stack solutions using the MERN stack with a focus on maintainability.",
-    skills: ["React", "Node.js", "MongoDB", "Express"],
+      "Designed and developed scalable backend services and RESTful APIs using Node.js, Express.js, MongoDB, and MySQL, with a strong focus on performance, security, and maintainability.",
+
+    skills: ["Node.js", "Express.js", "MongoDB", "MySQL", "REST APIs"],
+
     achievements: [
-      "Developed end-to-end applications",
-      "Implemented secure APIs",
-      "Built scalable architecture",
+      "Developed and maintained RESTful APIs to support frontend applications and third-party integrations.",
+      "Implemented secure authentication, authorization, and input validation mechanisms to protect application data.",
+      "Designed scalable backend architectures and optimized database queries to improve application performance and reliability.",
     ],
   },
 ];
@@ -46,10 +55,6 @@ const fadeUp = {
 export default function ExperienceTimeline() {
   return (
     <section id="experience" className="relative py-32 px-6 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
-      <div className="absolute right-0 bottom-20 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
-
       <div className="mx-40 relative z-10">
         {/* Header */}
         <div className="text-center mb-24">
@@ -94,7 +99,7 @@ export default function ExperienceTimeline() {
                       h-8
                       w-8
                       rounded-full
-                      border-4
+                      border-2
                       border-background
                       bg-accent
                       shadow-lg
@@ -130,6 +135,7 @@ export default function ExperienceTimeline() {
                       border
                       border-light-border
                       bg-card/50
+                      text-dark
                       backdrop-blur-md
                       p-8
                       transition-all
@@ -155,14 +161,14 @@ export default function ExperienceTimeline() {
                           <span
                             className="
                               rounded-full
-                              bg-green-500/15
+                              bg-green-500
                               border
-                              border-green-500/30
+                              border-green-500
                               px-3
                               py-1
                               text-xs
                               font-medium
-                              text-green-400
+                              text-dark
                             "
                           >
                             Current
@@ -205,7 +211,7 @@ export default function ExperienceTimeline() {
                             py-1
                             text-sm
                             transition-colors
-                            group-hover:border-accent/40
+                           hover:border-accent/40
                           "
                         >
                           {skill}

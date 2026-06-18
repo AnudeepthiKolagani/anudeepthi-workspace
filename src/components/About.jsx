@@ -149,7 +149,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative min-h-screen px-6 py-20">
+    <section id="about" className="relative min-h-screen px-6 py-20  ">
       {/* Glow Effects */}
       <div className="absolute left-20 top-20 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
 
