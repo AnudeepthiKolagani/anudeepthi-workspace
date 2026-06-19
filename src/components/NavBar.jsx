@@ -50,22 +50,22 @@ export default function Navbar() {
 
     setIsOpen(false);
   };
-const [isHomeVisible, setIsHomeVisible] = useState(true);
+  const [isHomeVisible, setIsHomeVisible] = useState(true);
 
-useEffect(() => {
-  const home = document.getElementById("home");
+  useEffect(() => {
+    const home = document.getElementById("home");
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      setIsHomeVisible(entry.isIntersecting);
-    },
-    { threshold: 0.3 },
-  );
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHomeVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 },
+    );
 
-  if (home) observer.observe(home);
+    if (home) observer.observe(home);
 
-  return () => observer.disconnect();
-}, []);
+    return () => observer.disconnect();
+  }, []);
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
@@ -83,7 +83,8 @@ useEffect(() => {
           className="
             relative
             inline-block
-            text-2xl
+            text-lg
+            lg:text-2xl
             font-bold
             tracking-wide
             bg-gradient-to-r
@@ -132,7 +133,7 @@ useEffect(() => {
               key={item.label}
               href={item.href}
               onClick={(e) => handleScroll(e, item.href)}
-              className={`relative text-lg font-medium transition-all duration-300 hover:-translate-y-0.5 ${activeSection === item.href ? "text-dark px-2 py-1 rounded-xl bg-accent/50 " : ""}`}
+              className={`relative text-sm lg:text-base font-medium transition-all duration-300 hover:-translate-y-0.5 ${activeSection === item.href ? "text-dark px-2 py-1 rounded-xl bg-accent/50 " : ""}`}
             >
               {item.label}
             </a>
@@ -166,7 +167,10 @@ useEffect(() => {
           </button>
         </motion.div>
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="md:hidden cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
@@ -185,15 +189,17 @@ useEffect(() => {
                 </a>
               ))}
 
-              <button
+              {/* <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="flex items-center gap-2"
               >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
                 Theme
-              </button>
+              </button> */}
 
-              <button className="rounded-lg border px-5 py-3">Hire Me</button>
+              <button className="rounded-lg border px-5 py-3 hover:bg-primary hover:text-accent hover:font-bold">
+                Hire Me
+              </button>
             </div>
           </div>
         )}

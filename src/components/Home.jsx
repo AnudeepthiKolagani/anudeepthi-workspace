@@ -84,14 +84,33 @@ export default function Home() {
     <section
       id="home"
       ref={homeRef}
-      className="relative w-full h-screen overflow-hidden bg-black"
+      className="relative w-full min-h-screen py-20 lg:py-5  overflow-visible lg:overflow-hidden bg-black"
     >
+      <div className="block lg:hidden">
+        {" "}
+        <video
+          ref={videoRef}
+          loop
+          muted={isMuted}
+          playsInline
+          className=" hidden
+            lg:block
+            absolute
+            inset-0
+            w-full
+            h-full
+            object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+          Your browser does not support the video tag
+        </video>
+      </div>
       <video
         ref={videoRef}
         loop
         muted={isMuted}
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover bg-black"
+        className="absolute top-0 left-0 w-full h-full object-cover object-[60%_center] bg-black"
       >
         <source src={heroVideo} type="video/mp4" />
         Your browser does not support the video tag
@@ -101,7 +120,17 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative flex min-h-screen mx-20 items-center"
+        className=" relative
+          flex
+          flex-col
+          lg:flex-row
+          min-h-screen
+          items-center
+          justify-center
+          px-5
+          md:px-10
+          lg:px-20
+          gap-10"
       >
         {/* LEFT SECTION - 30% */}
         <motion.div
@@ -110,45 +139,11 @@ export default function Home() {
           initial="hidden"
           animate="show"
         >
-          {/* <motion.div
-            variants={item}
-            initial="hidden"
-            animate="show"
-            className="relative inline-flex overflow-hidden rounded-full p-[1px]"
-          > */}
-          {/* Rotating Beam */}
-          {/* <div className="absolute inset-0 animate-border-beam">
-              <div className="h-full w-100 bg-primary blur-lg" />
-            </div> */}
-
-          {/* Content */}
-          {/* <span
-              variants={item}
-              initial="hidden"
-              animate="show"
-              className="
-                relative
-                z-10
-                inline-flex
-                rounded-full
-                text-dark
-                font-bold
-                px-4
-                py-2
-                text-sm
-                tracking-wide
-                backdrop-blur-md
-              "
-            >
-              Software Engineer • Full Stack Engineer
-            </span>
-          </motion.div> */}
-
           <motion.h1
             variants={item}
             initial="hidden"
             animate="show"
-            className="text-5xl md:text-6xl font-semibold leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight"
           >
             Hey, I'm <span className="font-bold">Anudeepthi</span>
           </motion.h1>
@@ -169,14 +164,14 @@ export default function Home() {
             animate="show"
             className="space-y-4"
           >
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               I don't just build features —
               <span className="font-semibold text-foreground pl-1">
                 I take ownership of outcomes.
               </span>
             </p>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               Over the last 3+ years, I've worked across the stack using{" "}
               <span className="font-bold">
                 React, Node.js, MongoDB, MySQL, Redis, and AWS,
@@ -185,7 +180,7 @@ export default function Home() {
               systems.
             </p>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               I've spent the last 3 years building systems that are designed{" "}
               <span className="font-bold">
                 not only to work today, but to scale tomorrow.
@@ -193,7 +188,8 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <motion.div
+          {/* TODO: ACTION BUTTONS */}
+          {/* <motion.div
             variants={item}
             initial="hidden"
             animate="show"
@@ -214,20 +210,20 @@ export default function Home() {
               Download Resume
               <Download size={18} />
             </button>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
         {/* Right Side: Play Video Button */}
         <div
           data-aos="zoom-in"
           data-aos-delay="600"
           onClick={toggleVideo}
-          className="w-full lg:w-7/12 flex justify-end items-center"
+          className="w-full lg:w-7/12 flex justify-center lg:justify-end items-center gap-3"
         >
           <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 hover: cursor-pointer group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">
             {!isPlaying || isMuted ? (
               // Play Icon
               <svg
-                className="w-5 h-5 md:w-8 md:h-8 text-white ml-0.5 md:ml-1"
+                className="w-5 h-5 md:w-8 md:h-8 text-primary ml-0.5 md:ml-1"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -236,7 +232,7 @@ export default function Home() {
             ) : (
               // Pause Icon
               <svg
-                className="w-5 h-5 md:w-8 md:h-8 text-white"
+                className="w-5 h-5 md:w-8 md:h-8 text-primary"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -244,12 +240,14 @@ export default function Home() {
               </svg>
             )}
           </div>
-          <span className="text-white text-[10px] md:text-xs font-bold tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">
+          <span className="text-primary text-sm md:text-base font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 transition-opacity cursor-pointer">
             {!isPlaying || isMuted ? "Play Reel" : "Pause"}
           </span>
         </div>
 
-        <SkillsTicker />
+        <div className="hidden md:block absolute bottom-0 left-0 w-full">
+          <SkillsTicker />
+        </div>
       </motion.div>
     </section>
   );
