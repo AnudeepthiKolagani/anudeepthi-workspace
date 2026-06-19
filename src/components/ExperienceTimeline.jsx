@@ -54,17 +54,17 @@ const fadeUp = {
 
 export default function ExperienceTimeline() {
   return (
-    <section id="experience" className="relative py-32 px-6 overflow-hidden">
-      <div className="mx-40 relative z-10">
+    <section id="experience" className="relative py-20 px-6 overflow-hidden">
+      <div className="px-5 md:px-10 lg:px-20 relative z-10">
         {/* Header */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-18 lg:mb-24">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-sm uppercase tracking-[0.2em] opacity-60 mb-3"
+            className="text-sm lg:text-base uppercase tracking-[0.2em] opacity-60 mb-3"
           >
             Experience
           </motion.p>
@@ -75,7 +75,7 @@ export default function ExperienceTimeline() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-5xl font-bold"
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-tight"
           >
             Professional Journey
           </motion.h2>
@@ -84,7 +84,7 @@ export default function ExperienceTimeline() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-light-border" />
+          <div className="absolute left-2 lg:left-4 top-0 bottom-0 w-[2px] bg-light-border" />
 
           <div className="space-y-16">
             {experiences.map((exp) => (
@@ -96,8 +96,10 @@ export default function ExperienceTimeline() {
                 <div className="relative z-10 flex-shrink-0">
                   <div
                     className="
-                      h-8
-                      w-8
+                      h-4
+                      w-4
+                      lg:h-8
+                      lg:w-8
                       rounded-full
                       border-2
                       border-background
@@ -116,7 +118,7 @@ export default function ExperienceTimeline() {
                     whileInView="visible"
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="flex items-center gap-2 text-sm opacity-60 mb-3"
+                    className="flex items-center gap-2 text-sm lg:text-base opacity-60 mb-3"
                   >
                     <Calendar size={14} />
                     {exp.period}
@@ -155,7 +157,9 @@ export default function ExperienceTimeline() {
                       className="mb-6"
                     >
                       <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-2xl font-bold">{exp.role}</h3>
+                        <h3 className="text-lg text-2xl font-bold">
+                          {exp.role}
+                        </h3>
 
                         {exp.current && (
                           <span
@@ -186,7 +190,7 @@ export default function ExperienceTimeline() {
                       whileInView="visible"
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
-                      className="leading-relaxed opacity-80 mb-8"
+                      className="leading-relaxed text-sm md:text-base opacity-80 mb-8"
                     >
                       {exp.description}
                     </motion.p>
@@ -220,7 +224,7 @@ export default function ExperienceTimeline() {
                     </motion.div>
 
                     {/* Contributions */}
-                    <div>
+                    <div className="hidden md:block ">
                       <motion.h4
                         variants={fadeUp}
                         initial="hidden"

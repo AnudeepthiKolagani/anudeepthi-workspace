@@ -101,7 +101,7 @@ const TagCard = ({
       data-aos-delay={aosDelay}
       className={`w-72 sm:w-100 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-700 z-10 ${className} ${
         isActive
-          ? "bg-accent border-red-400 shadow-[0_20px_50px_rgba(255,42,42,0.4)]"
+          ? "bg-accent/80  shadow-[0_20px_50px_rgba(255,42,42,0.4)]"
           : "bg-white border border-gray-200 shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
       }`}
     >
@@ -113,19 +113,19 @@ const TagCard = ({
       {/* Inner container */}
       <div
         className={`w-full h-full rounded-[1.5rem] mt-8 p-8 flex flex-col min-h-[220px] transition-colors duration-700 ${
-          isActive ? "bg-secondary-accent/50" : "bg-[#f4f4f4]"
+          isActive ? "bg-secondary-accent/80" : "bg-[#f4f4f4]"
         }`}
       >
         <span
           className={`text-xl font-bold mb-2 font-serif italic transition-colors duration-700 ${
-            isActive ? "text-red-200" : "text-gray-400"
+            isActive ? "text-dark" : "text-gray-400"
           }`}
         >
           {number}
         </span>
 
         <h3
-          className={`text-2xl font-black mb-3 tracking-tight transition-colors duration-700 ${
+          className={`text-lg md:text-xl lg:text-2xl font-black mb-3 tracking-tight transition-colors duration-700 ${
             isActive ? "text-white" : "text-gray-900"
           }`}
         >
@@ -133,8 +133,8 @@ const TagCard = ({
         </h3>
 
         <p
-          className={`text-sm leading-relaxed font-medium transition-colors duration-700 ${
-            isActive ? "text-red-100" : "text-gray-500"
+          className={`text-sm md:text-base leading-relaxed font-medium transition-colors duration-700 ${
+            isActive ? "text-primary/90" : "text-gray-500"
           }`}
         >
           {text}
@@ -166,7 +166,7 @@ export default function EngineeringMindset() {
     <section
       id="services"
       ref={containerRef}
-      className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
+      className="bg-primary pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
     >
       <div className="max-w-7xl mx-auto relative md:h-[1350px]">
         {/* Header Content */}
@@ -180,7 +180,7 @@ export default function EngineeringMindset() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white"
+            className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm lg:text-base text-gray-600 font-bold mb-8 shadow-sm bg-primary"
           >
             Engineering Principles
           </motion.div>
@@ -190,7 +190,7 @@ export default function EngineeringMindset() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative"
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-[1.1] mb-6 tracking-tight relative"
           >
             How I approach building software that lasts
             {/* Hand-drawn arrow */}
@@ -217,7 +217,7 @@ export default function EngineeringMindset() {
               />
             </svg> */}
           </motion.h2>
-          <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
+          <p className="text-gray-500 text-sm md:text-md lg:text-base md:text-lg max-w-sm font-medium leading-relaxed">
             The ideas that shape how I design systems, write code, and make
             engineering decisions.
           </p>

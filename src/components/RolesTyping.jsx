@@ -19,7 +19,9 @@ export default function RolesTyping() {
       repeat={Infinity}
       cursor={true}
       className="
-        text-5xl 
+        text-2xl
+        md:text-4xl
+        lg:text-5xl 
         font-extrabold 
         text-transparent 
         text-stroke 

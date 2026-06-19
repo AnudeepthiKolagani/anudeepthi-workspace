@@ -57,7 +57,6 @@ const skillsContainerVariants = {
   },
 };
 
-
 export default function About() {
   const toolkit = [
     {
@@ -149,17 +148,12 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative min-h-screen px-6 py-20  ">
-      {/* Glow Effects */}
-      <div className="absolute left-20 top-20 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
-
-      <div className="absolute right-20 bottom-20 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
-
-      <motion.div className="mx-20">
+    <section id="about" className="relative min-h-screen ">
+      <motion.div className="px-5 md:px-10 lg:px-20 py-10">
         {/* Heading */}
         <div className="mb-16 text-center">
           <motion.p
-            initial={{ y: "90%" }}
+            initial={{ y: "50%" }}
             whileInView={{ y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{
@@ -172,14 +166,14 @@ export default function About() {
           </motion.p>
 
           <motion.h2
-            initial={{ y: "90%" }}
+            initial={{ y: "50%" }}
             whileInView={{ y: 0 }}
             viewport={{
               once: true,
               amount: 0.15,
             }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold leading-tight "
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-tight "
           >
             Turning Complex Ideas
             <br />
@@ -207,13 +201,13 @@ export default function About() {
             }}
             className="rounded-3xl border border-light-border p-8 backdrop-blur-sm lg:col-span-3"
           >
-            <h3 className="mb-6 text-2xl font-semibold">Who I Am</h3>
+            <h3 className="mb-6 text-lg lg:text-2xl font-semibold">Who I Am</h3>
 
-            <p className="leading-relaxed text-base md:text-lg">
+            <p className="leading-relaxed text-sm md:text-lg">
               I enjoy owning problems from idea to production.
             </p>
 
-            <p className="mt-5 leading-relaxed text-base md:text-lg">
+            <p className="mt-5 leading-relaxed text-sm md:text-lg">
               Over the last 3 years, I've worked across the stack using{" "}
               <span className="text-accent font-semibold">
                 React, Next.js, Node.js, MongoDB, Redis, MySQL, and AWS{" "}
@@ -222,7 +216,7 @@ export default function About() {
               grow.
             </p>
 
-            <ul className="mt-6 space-y-4 text-base md:text-lg">
+            <ul className="mt-6 space-y-4 text-sm md:text-lg">
               <li>
                 → I take responsibility for outcomes, not just
                 implementation—driving features from requirements to production.
@@ -363,13 +357,13 @@ export default function About() {
                     Current Toolkit
                   </p>
 
-                  <h3 className="mt-2 text-2xl font-semibold">
+                  <h3 className="mt-2 text:lg md:text-2xl font-semibold">
                     Technologies I Build With
                   </h3>
                 </div>
               </div>
 
-              <div className="mt-10 grid gap-8 md:grid-cols-2">
+              <div className="mt-5 lg:mt-10 grid gap-8 md:grid-cols-2">
                 {toolkit.map((section, index) => (
                   <motion.div
                     key={section.title}
@@ -422,7 +416,7 @@ export default function About() {
               </div>
 
               <div className="mt-10 border-t border-light-border pt-6">
-                <p className="text-md opacity-70 leading-relaxed">
+                <p className="text-sm lg:text-md opacity-70 leading-relaxed">
                   Building modern React applications, scalable backend systems,
                   asynchronous processing workflows, secure authentication
                   platforms, and cloud-ready solutions with a focus on
@@ -433,7 +427,6 @@ export default function About() {
           </motion.div>
         </motion.div>
       </motion.div>
-
     </section>
   );
 }
