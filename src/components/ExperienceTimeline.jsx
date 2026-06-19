@@ -75,7 +75,7 @@ export default function ExperienceTimeline() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-2xl md:text-4xl lg:text-5xl font-bold"
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-tight"
           >
             Professional Journey
           </motion.h2>

@@ -190,7 +190,7 @@ export default function EngineeringMindset() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="text-2xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight relative"
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-[1.1] mb-6 tracking-tight relative"
           >
             How I approach building software that lasts
             {/* Hand-drawn arrow */}
