@@ -1,46 +1,53 @@
 import { Link, ExternalLink } from "lucide-react";
+import { motion } from "motion/react";
 
 const projects = [
   {
     id: "01",
-    title: "Lucy Platform",
+    title: "AI DOC Assistant",
     description:
-      "Developed scalable React-based interfaces, integrated APIs, improved accessibility compliance, and optimized application performance.",
+      "Built an AI-powered document assistant that enables users to upload documents, store them securely in cloud storage, and interact with their content through an intelligent chat interface similar to NotebookLM.",
 
-    tech: ["React", "JavaScript", "Redux", "Tailwind", "REST APIs"],
+    tech: [
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "AWS S3",
+    ],
 
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692",
-    impact: "WCAG accessibility improvements",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    impact: "AI-powered document analysis and retrieval",
+    repoLink: "https://github.com/AnudeepthiKolagani/ai-doc-assistant-web.git",
   },
-
   {
     id: "02",
     title: "Developer Portfolio",
     description:
-      "A modern portfolio showcasing projects, engineering principles, animations, accessibility, and responsive design.",
+      "Designed and developed a modern portfolio showcasing projects, engineering practices, accessibility standards, responsive design, and interactive animations.",
 
-    tech: ["React", "Vite", "Tailwind", "Framer Motion"],
+    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
 
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
     impact: "95+ Lighthouse performance score",
-  },
-
-  {
-    id: "03",
-    title: "Task Management Platform",
-    description:
-      "Built a productivity-focused application with role-based access, reusable components, and scalable architecture.",
-
-    tech: ["MERN", "MongoDB", "Node.js", "Express"],
-
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-    impact: "Reusable scalable architecture",
+    repoLink:""
   },
 ];
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 70,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 export default function ProjectJourney() {
   return (
-    <section id="projects" className="relative overflow-hidden py-32 px-6">
+    <section id="projects" className="relative overflow-hidden py-20 px-6">
       {/* Glow */}
       <div className="absolute top-20 left-10 h-72 w-72 rounded-full blur-3xl opacity-10 animate-pulse" />
 
@@ -49,13 +56,27 @@ export default function ProjectJourney() {
       <div className="mx-20">
         {/* Heading */}
         <div className="mb-24 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-3 text-sm uppercase tracking-[0.2em] opacity-60"
+          >
             Selected Work
-          </p>
+          </motion.p>
 
-          <h2 className="text-5xl font-bold">
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl font-bold"
+          >
             Projects That Define My Journey
-          </h2>
+          </motion.h2>
         </div>
 
         {/* Projects */}
@@ -75,7 +96,7 @@ export default function ProjectJourney() {
 
 function ProjectCard({ project, reverse }) {
   return (
-    <div
+    <motion.div
       className={`
         relative
         grid
@@ -87,7 +108,12 @@ function ProjectCard({ project, reverse }) {
     >
       {/* Image */}
       <div className="group relative">
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="
       relative
       overflow-hidden
@@ -112,12 +138,12 @@ function ProjectCard({ project, reverse }) {
           />
 
           {/* Impact Card */}
-          <div className="absolute bg-accent text-dark bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
+          {/* <div className="absolute bg-accent text-dark bottom-6 left-6 rounded-2xl border p-4 backdrop-blur-md">
             <p className="text-sm">Impact</p>
 
             <p className="font-semibold">{project.impact}</p>
-          </div>
-        </div>
+          </div> */}
+        </motion.div>
 
         {/* Floating Project Number */}
         {/* <div className="absolute -top-6 -right-6 rounded-full border px-6 py-3 text-xl font-bold backdrop-blur-md">
@@ -126,19 +152,42 @@ function ProjectCard({ project, reverse }) {
       </div>
 
       {/* Content */}
-      <div>
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] opacity-60">
+      <motion.div>
+        {/* <p className="mb-4 text-sm uppercase tracking-[0.3em] opacity-60">
           Featured Project
-        </p>
+        </p> */}
 
-        <h3 className="mb-6 text-4xl font-bold text-accent">{project.title}</h3>
+        <motion.h3
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 text-4xl font-bold text-accent"
+        >
+          {project.title}
+        </motion.h3>
 
-        <p className="mb-8 max-w-xl leading-relaxed opacity-80">
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 max-w-xl leading-relaxed opacity-80"
+        >
           {project.description}
-        </p>
+        </motion.p>
 
         {/* Tech Stack */}
-        <div className="mb-8 flex flex-wrap gap-3">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex flex-wrap gap-3"
+        >
           {project.tech.map((skill) => (
             <span
               key={skill}
@@ -157,10 +206,17 @@ function ProjectCard({ project, reverse }) {
               {skill}
             </span>
           ))}
-        </div>
+        </motion.div>
 
         {/* Buttons */}
-        <div className="flex gap-4">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex gap-4"
+        >
           <button
             className="
               flex
@@ -173,7 +229,7 @@ function ProjectCard({ project, reverse }) {
               transition-all
               duration-300
               bg-accent
-              text-dark
+              text-primary
               cursor-pointer
             "
           >
@@ -193,15 +249,15 @@ function ProjectCard({ project, reverse }) {
               transition-all
               duration-300
               hover:bg-accent
-              hover:text-dark
+              hover:text-primary
               cursor-pointer
             "
           >
             GitHub
             <Link size={18} />
           </button>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

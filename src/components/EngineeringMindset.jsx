@@ -1,131 +1,380 @@
-import { Zap, Layers3, ShieldCheck, Workflow, Circle } from "lucide-react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+// import { Zap, Layers3, ShieldCheck, Workflow } from "lucide-react";
+import { useRef, useState } from "react";
 
-const principles = [
-  {
-    icon: Zap,
-    title: "Performance Across the Stack",
-    description: [
-      "Optimize frontend rendering performance",
-      "Apply code splitting and lazy loading strategies",
-      "Improve backend response time and query efficiency",
-      "Use caching to reduce redundant computations",
-    ],
+export const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 20,
   },
-  {
-    icon: Layers3,
-    title: "Scalable System Design",
-    description: [
-      "Design reusable and modular frontend components",
-      "Build APIs that support future expansion",
-      "Structure backend services for independent scaling",
-      "Keep architecture flexible for evolving requirements",
-    ],
+  visible: {
+    opacity: 1,
+    y: 0,
   },
-  {
-    icon: ShieldCheck,
-    title: "Reliability & Security First",
-    description: [
-      "Implement input validation and error handling",
-      "Design secure authentication and authorization flows",
-      "Ensure safe data handling across services",
-      "Follow best practices for API security",
-    ],
-  },
-  {
-    icon: Workflow,
-    title: "Clean End-to-End Engineering",
-    description: [
-      "Maintain clear separation between UI, logic, and data layers",
-      "Write reusable and predictable code structures",
-      "Design consistent API contracts between frontend and backend",
-      "Focus on maintainability over quick fixes",
-    ],
-  },
-];
-export default function EngineeringMindset() {
+};
+// const principles = [
+//   {
+//     icon: Zap,
+//     title: "Performance Across the Stack",
+//     description: [
+//       "Optimize frontend rendering performance",
+//       "Apply code splitting and lazy loading strategies",
+//       "Improve backend response time and query efficiency",
+//       "Use caching to reduce redundant computations",
+//     ],
+//   },
+//   {
+//     icon: Layers3,
+//     title: "Scalable System Design",
+//     description: [
+//       "Design reusable and modular frontend components",
+//       "Build APIs that support future expansion",
+//       "Structure backend services for independent scaling",
+//       "Keep architecture flexible for evolving requirements",
+//     ],
+//   },
+//   {
+//     icon: ShieldCheck,
+//     title: "Reliability & Security First",
+//     description: [
+//       "Implement input validation and error handling",
+//       "Design secure authentication and authorization flows",
+//       "Ensure safe data handling across services",
+//       "Follow best practices for API security",
+//     ],
+//   },
+//   {
+//     icon: Workflow,
+//     title: "Clean End-to-End Engineering",
+//     description: [
+//       "Maintain clear separation between UI, logic, and data layers",
+//       "Write reusable and predictable code structures",
+//       "Design consistent API contracts between frontend and backend",
+//       "Focus on maintainability over quick fixes",
+//     ],
+//   },
+// ];
+
+const TagCard = ({
+  number,
+  title,
+  text,
+  className,
+  aosDelay,
+  aosType,
+  pathLength,
+  containerRef,
+}) => {
+  const ref = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+
+  useMotionValueEvent(pathLength, "change", (latest) => {
+    if (!ref.current || !containerRef.current) return;
+
+    const cardRect = ref.current.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+
+    const cardTopRelativeToContainer = cardRect.top - containerRect.top;
+    const containerHeight = containerRect.height;
+
+    // Trigger when the line tip is 50px into the card
+    const triggerY = cardTopRelativeToContainer + 50;
+    const lineTipY = latest * containerHeight;
+
+    if (lineTipY >= triggerY && !isActive) {
+      setIsActive(true);
+    } else if (lineTipY < triggerY && isActive) {
+      setIsActive(false);
+    }
+  });
+
   return (
-    <section id="mindset" className="relative pt-32 px-6 overflow-hidden">
-      {/* Glow */}
-      <div className="absolute top-20 left-20 h-64 w-64 rounded-full blur-3xl opacity-10 animate-pulse" />
-      <div className="absolute bottom-20 right-20 h-64 w-64 rounded-full blur-3xl opacity-10 animate-pulse" />
+    <motion.div
+      ref={ref}
+      data-aos={aosType || "fade-up"}
+      data-aos-delay={aosDelay}
+      className={`w-72 sm:w-100 rounded-[2rem] p-2 relative flex flex-col items-center hover:scale-[1.02] transition-all duration-700 z-10 ${className} ${
+        isActive
+          ? "bg-accent/80  shadow-[0_20px_50px_rgba(255,42,42,0.4)]"
+          : "bg-white border border-gray-200 shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+      }`}
+    >
+      {/* The hole punch */}
+      <div className="w-5 h-5 bg-gradient-to-br from-gray-300 to-gray-100 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] absolute top-4 border border-gray-300 z-10 flex items-center justify-center">
+        <div className="w-2 h-2 bg-gray-800 rounded-full opacity-20"></div>
+      </div>
 
-      <div className="mx-20">
-        <div className="mb-20 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] opacity-60">
-            Engineering Mindset
+      {/* Inner container */}
+      <div
+        className={`w-full h-full rounded-[1.5rem] mt-8 p-8 flex flex-col min-h-[220px] transition-colors duration-700 ${
+          isActive ? "bg-secondary-accent/80" : "bg-[#f4f4f4]"
+        }`}
+      >
+        <span
+          className={`text-xl font-bold mb-2 font-serif italic transition-colors duration-700 ${
+            isActive ? "text-dark" : "text-gray-400"
+          }`}
+        >
+          {number}
+        </span>
+
+        <h3
+          className={`text-lg md:text-xl lg:text-2xl font-black mb-3 tracking-tight transition-colors duration-700 ${
+            isActive ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {title}
+        </h3>
+
+        <p
+          className={`text-sm md:text-base leading-relaxed font-medium transition-colors duration-700 ${
+            isActive ? "text-primary/90" : "text-gray-500"
+          }`}
+        >
+          {text}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
+export default function EngineeringMindset() {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const pathLength = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 20,
+    restDelta: 0.001,
+  });
+  const card1Opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const card2Opacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 1]);
+  const card3Opacity = useTransform(scrollYProgress, [0.5, 0.7], [0, 1]);
+  const card4Opacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
+
+  return (
+    <section
+      id="services"
+      ref={containerRef}
+      className="bg-primary pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
+    >
+      <div className="max-w-7xl mx-auto relative md:h-[1350px]">
+        {/* Header Content */}
+        <div
+          data-aos="fade-up"
+          className="md:absolute top-10 left-0 md:w-[450px] z-20 mb-16 md:mb-0"
+        >
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm lg:text-base text-gray-600 font-bold mb-8 shadow-sm bg-primary"
+          >
+            Engineering Principles
+          </motion.div>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-[1.1] mb-6 tracking-tight relative"
+          >
+            How I approach building software that lasts
+            {/* Hand-drawn arrow */}
+            {/* <svg
+              className="absolute -bottom-10 right-10 w-12 h-12 text-gray-800"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                className="hidden"
+              />
+              <path
+                d="M4 4 Q 10 10 15 15 M 15 15 L 10 15 M 15 15 L 15 10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg> */}
+          </motion.h2>
+          <p className="text-gray-500 text-sm md:text-md lg:text-base md:text-lg max-w-sm font-medium leading-relaxed">
+            The ideas that shape how I design systems, write code, and make
+            engineering decisions.
           </p>
-
-          <h2 className="text-5xl font-bold">Principles Behind Every Build</h2>
         </div>
+        {/* Desktop SVG Animated Dashed Line */}
+        <svg
+          className="hidden md:block absolute top-0 left-0 w-full h-[1350px] pointer-events-none z-0"
+          viewBox="0 0 1000 1350"
+          preserveAspectRatio="none"
+        >
+          {/* Faint background path (optional guide) */}
+          <path
+            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200"
+            fill="none"
+            stroke="#cbd5e1"
+            strokeWidth="2"
+            strokeDasharray="8 10"
+          />
 
-        <div className="relative flex flex-row gap-6">
-          {principles.map((item, index) => {
-            const Icon = item.icon;
-            const isDown = index % 2 !== 0;
+          {/* Mask to reveal the dashed path based on scroll */}
+          <mask id="path-mask">
+            <motion.path
+              d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200"
+              fill="none"
+              stroke="white"
+              strokeWidth="20"
+              style={{ pathLength }}
+            />
+          </mask>
 
-            return (
-              <div
-                key={item.title}
-                className={`relative flex ${isDown ? "mt-20" : "mb-20"}`}
-              >
-                {/* Card */}
-                <div
-                  className={`
-                    group
-                    w-full
-                    max-w-2xl
-                    rounded-xl
-                    border
-                    p-6
-                    backdrop-blur-sm
-                    transition-all
-                    duration-500
-                    hover:-translate-y-2
-                    hover:scale-[1.02]
-                  ${!isDown ? "bg-accent text-dark" : ""}`}
-                >
-                  <div className="mb-4 flex items-center gap-4">
-                    <div
-                      className="
-                        rounded-2xl
-                        border
-                        p-3
-                        transition-transform
-                        duration-300
-                        group-hover:rotate-6
-                      "
-                    >
-                      <Icon
-                        size={24}
-                        className={` ${!isDown ? "bg-accent text-dark" : ""}`}
-                      />
-                    </div>
+          {/* The actual dashed line that gets revealed */}
+          <path
+            d="M 650,200 C 400,300 200,400 300,600 C 400,800 750,750 700,950 C 650,1150 400,1150 300,1200"
+            fill="none"
+            stroke="black"
+            strokeWidth="2"
+            strokeDasharray="8 10"
+            mask="url(#path-mask)"
+            className="drop-shadow-sm"
+          />
+        </svg>
 
-                    <h3
-                      className={`text-xl font-semibold ${isDown ? "text-accent" : ""}`}
-                    >
-                      {item.title}
-                    </h3>
-                  </div>
-                  {/* bullet points */}
-                  <div className="space-y-2 text-sm ">
-                    {item.description.map((desc, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center  gap-2"
-                      >
-                        <Circle
-                          size={10}
-                          className={` ${!isDown ? "fill-dark" : "fill-accent"}`}
-                        />
-                        <span>{desc}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Mobile Animated Vertical Dashed Line */}
+        <svg
+          className="md:hidden absolute top-0 left-[50%] -translate-x-1/2 w-4 h-[100%] pointer-events-none z-0"
+          viewBox="0 0 4 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 2,0 L 2,100"
+            fill="none"
+            stroke="#cbd5e1"
+            strokeWidth="4"
+            strokeDasharray="4 6"
+            vectorEffect="non-scaling-stroke"
+          />
+          <mask id="path-mask-mobile">
+            <motion.path
+              d="M 2,0 L 2,100"
+              fill="none"
+              stroke="white"
+              strokeWidth="4"
+              style={{ pathLength }}
+              vectorEffect="non-scaling-stroke"
+            />
+          </mask>
+          <path
+            d="M 2,0 L 2,100"
+            fill="none"
+            stroke="black"
+            strokeWidth="4"
+            strokeDasharray="4 6"
+            mask="url(#path-mask-mobile)"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+        {/* Cards Container */}
+        <div className="flex flex-col gap-8 md:gap-12 items-center md:block relative z-10 w-full pt-4 md:pt-0 pb-12 md:pb-0">
+          <motion.div
+            style={{
+              opacity: card1Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="01"
+              title="Understand Before Building"
+              text="I prefer understanding the problem deeply before writing code.Good engineering starts with clarity—understanding business goals, user workflows, and system constraints before choosing tools or implementation details."
+              className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
+              aosType="fade-left"
+              aosDelay="100"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card2Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="02"
+              title="Think in Systems"
+              text="I rarely look at a feature in isolation.
+Every API, database change, or frontend decision influences performance, maintainability, and future development. I try to optimize for the entire system, not a single component."
+              className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
+              aosType="fade-right"
+              aosDelay="200"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card3Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="03"
+              title="Build for Scale"
+              text="I focus on creating software that continues to work as usage grows.
+From asynchronous processing with Redis and BullMQ to efficient database design and caching strategies, I enjoy solving scalability challenges before they become production issues."
+              className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+              aosType="fade-left"
+              aosDelay="300"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          <motion.div
+            style={{
+              opacity: card4Opacity,
+              y: useTransform(card1Opacity, [0, 1], [50, 0]),
+            }}
+          >
+            <TagCard
+              number="04"
+              title="Own the Outcome"
+              text="For me, engineering doesn't end after deployment.
+I believe in taking responsibility for reliability, maintainability, monitoring, and continuous improvement long after a feature reaches production."
+              className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
+              aosType="fade-right"
+              aosDelay="400"
+              pathLength={pathLength}
+              containerRef={containerRef}
+            />
+          </motion.div>
+          {/* Hand-drawn end text */}
+          <div
+            data-aos="fade-in"
+            data-aos-delay="600"
+            className="hidden md:block absolute top-[1350px] left-[65%] font-['Caveat',cursive] text-3xl text-gray-600 "
+          >
+            Great software is built twice: first in thought, then in code.
+          </div>
         </div>
       </div>
     </section>

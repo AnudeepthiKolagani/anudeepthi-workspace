@@ -5,9 +5,9 @@ const ROLES = [
   2000,
   "< Full Stack Engineer />",
   2000,
-  "< FrontEnd Engineer />",
-  2000,
   "< Backend Engineer />",
+  2000,
+  "< React Developer />",
 ];
 export default function RolesTyping() {
   return (
@@ -18,7 +18,15 @@ export default function RolesTyping() {
       deletionSpeed={10}
       repeat={Infinity}
       cursor={true}
-      className="text-4xl font-bold text-accent"
+      className="
+        text-2xl
+        md:text-4xl
+        lg:text-5xl 
+        font-extrabold 
+        text-transparent 
+        text-stroke 
+        text-stroke-primary
+      "
     />
   );
 }

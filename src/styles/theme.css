@@ -4,18 +4,18 @@
 
 :root {
   /* Backgrounds */
-  --primary: #171715;
+  --primary: #ffffff;
   --dark: #000000;
-  --secondary-dark: #2a2a2a;
+  --secondary-dark: #1f1212;
 
   /* Text */
-  --heading: #ffffff;
-  --sub-heading: #d6d6d6;
-  --body: #ffffff;
+  --heading: #ff0000;
+  --sub-heading: #9c5757;
+  --body: #ffffffd6;
 
   /* Brand */
-  --primary-accent: #d4a017;
-  --secondary-accent: #84754f;
+  --primary-accent: #ff0000;
+  --secondary-accent: #ca0303;
 
   /* Buttons */
   --btn-bg: #d4a017;
@@ -24,11 +24,11 @@
   --btn-hover: #e5b93c;
 
   /* Borders */
-  --light-border: #3b3d37;
-  --border-hover: #4a4a4a;
+  --light-border: #a4a89e;
+  --border-hover: #ff0000;
 
   /* Cards */
-  --card-bg: #252525;
+  --card-bg: #d8d7d7;
 
   /* Effects */
   --glow: rgba(212, 160, 23, 0.25);

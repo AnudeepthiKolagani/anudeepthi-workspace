@@ -1,206 +1,263 @@
 import { Calendar, Sparkles } from "lucide-react";
+import { motion } from "motion/react";
 
 const experiences = [
   {
-    period: "2024 - Present",
-    role: "Frontend Developer",
-    company: "Lucy Platform",
+    period: "2025 - Present",
+    role: "Engineer",
+    company: "Veltris",
     current: true,
-
     description:
-      "Developing modern React applications, enhancing accessibility, and building scalable UI systems.",
-
-    skills: ["React", "Redux", "JavaScript", "Tailwind", "REST APIs"],
-
+      "Developing high-performance React applications, implementing WCAG accessibility standards, and designing scalable component-based UI architectures.",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Redux",
+      "Tailwind",
+      "REST APIs",
+    ],
     achievements: [
-      "Improved WCAG accessibility compliance",
-      "Created reusable component libraries",
-      "Optimized frontend performance",
+      "Enhanced accessibility standards by implementing WCAG guidelines across key user interfaces.",
+      "Developed a scalable component architecture with reusable, responsive, and interactive React components.",
+      "Improved application performance through lazy loading, code splitting, React.memo, useMemo, useCallback, and optimized state management, resulting in faster load times and smoother UI interactions.",
     ],
   },
-
   {
-    period: "2023 - 2024",
-    role: "Full Stack Engineer",
-    company: "Project Experience",
-
+    period: "2023 - 2025",
+    role: "Associate Engineer",
+    company: "Veltris",
     current: false,
-
     description:
-      "Designed and developed full-stack solutions using the MERN stack with a focus on maintainability.",
+      "Designed and developed scalable backend services and RESTful APIs using Node.js, Express.js, MongoDB, and MySQL, with a strong focus on performance, security, and maintainability.",
 
-    skills: ["React", "Node.js", "MongoDB", "Express"],
+    skills: ["Node.js", "Express.js", "MongoDB", "MySQL", "REST APIs"],
 
     achievements: [
-      "Developed end-to-end applications",
-      "Implemented secure APIs",
-      "Built scalable architecture",
+      "Developed and maintained RESTful APIs to support frontend applications and third-party integrations.",
+      "Implemented secure authentication, authorization, and input validation mechanisms to protect application data.",
+      "Designed scalable backend architectures and optimized database queries to improve application performance and reliability.",
     ],
   },
 ];
 
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 70,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 export default function ExperienceTimeline() {
   return (
-    <section id="experience" className="relative overflow-hidden py-32 px-6">
-      {/* Glow */}
-      <div className="absolute left-20 top-20 h-80 w-80 rounded-full blur-3xl opacity-10 animate-pulse" />
-
-      <div className="absolute right-20 bottom-20 h-80 w-80 rounded-full blur-3xl opacity-10 animate-pulse" />
-
-      <div className="mx-20">
+    <section id="experience" className="relative py-20 px-6 overflow-hidden">
+      <div className="px-5 md:px-10 lg:px-20 relative z-10">
         {/* Header */}
-        <div className="mb-24 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.35em] opacity-60">
+        <div className="text-center mb-18 lg:mb-24">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm lg:text-base uppercase tracking-[0.2em] opacity-60 mb-3"
+          >
             Experience
-          </p>
+          </motion.p>
 
-          <h2 className="text-5xl font-bold">My Professional Journey</h2>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-xl md:text-3xl lg:text-5xl font-bold leading-tight"
+          >
+            Professional Journey
+          </motion.h2>
         </div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Center Line */}
-          <div
-            className="
-              absolute
-              left-1/2
-              top-0
-              hidden
-              h-full
-              w-px
-              -translate-x-1/2
-              border-l
-              lg:block
-            "
-          />
+          {/* Vertical Line */}
+          <div className="absolute left-2 lg:left-4 top-0 bottom-0 w-[2px] bg-light-border" />
 
-          {experiences.map((exp, index) => {
-            const isRight = index % 2 === 0;
-
-            return (
-              <div key={exp.role} className="relative mb-24">
-                {/* Timeline Dot */}
-                <div
-                  className="
-                    absolute
-                    left-1/2
-                    top-12
-                    hidden
-                    h-6
-                    w-6
-                    -translate-x-1/2
-                    rounded-full
-                    border
-                    lg:block
-                  "
-                >
+          <div className="space-y-16">
+            {experiences.map((exp) => (
+              <div
+                key={`${exp.role}-${exp.company}`}
+                className="relative flex gap-8"
+              >
+                {/* Timeline Marker */}
+                <div className="relative z-10 flex-shrink-0">
                   <div
                     className="
-                      absolute
-                      inset-0
+                      h-4
+                      w-4
+                      lg:h-8
+                      lg:w-8
                       rounded-full
-                      animate-ping
-                      opacity-40
+                      border-2
+                      border-background
+                      bg-accent
+                      shadow-lg
                     "
                   />
                 </div>
 
-                {/* Card */}
-                <div
-                  className={`
-                    lg:w-[46%]
-                    ${isRight ? "lg:ml-auto" : ""}
-                  `}
-                >
-                  <div
+                {/* Content */}
+                <div className="flex-1 pb-4">
+                  {/* Date */}
+                  <motion.div
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="flex items-center gap-2 text-sm lg:text-base opacity-60 mb-3"
+                  >
+                    <Calendar size={14} />
+                    {exp.period}
+                  </motion.div>
+
+                  {/* Card */}
+                  <motion.div
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                     className="
+                      group
                       rounded-3xl
                       border
+                      border-light-border
+                      bg-card/50
+                      text-dark
+                      backdrop-blur-md
                       p-8
-                      backdrop-blur-sm
                       transition-all
                       duration-500
                       hover:-translate-y-2
+                      hover:border-accent/40
+                      hover:shadow-2xl
                     "
                   >
-                    {/* Top Row */}
-                    <div className="mb-6 flex items-start justify-between">
-                      <div>
-                        <h3 className="text-2xl font-bold text-accent">
+                    {/* Role + Company */}
+                    <motion.div
+                      variants={fadeUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="mb-6"
+                    >
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h3 className="text-lg text-2xl font-bold">
                           {exp.role}
                         </h3>
 
-                        <p className="mt-2 opacity-70">{exp.company}</p>
+                        {exp.current && (
+                          <span
+                            className="
+                              rounded-full
+                              bg-green-500
+                              border
+                              border-green-500
+                              px-3
+                              py-1
+                              text-xs
+                              font-medium
+                              text-dark
+                            "
+                          >
+                            Current
+                          </span>
+                        )}
                       </div>
 
-                      {exp.current && (
-                        <span
-                          className="
-                            rounded-full
-                            border
-                            border-green-500
-                            px-3
-                            py-1
-                            text-xs
-                            bg-green-300
-                            text-dark
-                          "
-                        >
-                          Current
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Period */}
-                    <div className="mb-6 flex items-center gap-2 opacity-70">
-                      <Calendar size={16} />
-                      {exp.period}
-                    </div>
+                      <p className="mt-2 text-lg opacity-70">{exp.company}</p>
+                    </motion.div>
 
                     {/* Description */}
-                    <p className="mb-8 leading-relaxed opacity-80">
+                    <motion.p
+                      variants={fadeUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="leading-relaxed text-sm md:text-base opacity-80 mb-8"
+                    >
                       {exp.description}
-                    </p>
+                    </motion.p>
 
                     {/* Skills */}
-                    <div className="mb-8 flex flex-wrap gap-3">
+                    <motion.div
+                      variants={fadeUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="flex flex-wrap gap-3 mb-8"
+                    >
                       {exp.skills.map((skill) => (
                         <span
                           key={skill}
                           className="
                             rounded-full
                             border
+                            border-light-border
                             px-3
                             py-1
                             text-sm
-                            border-light-border
+                            transition-colors
+                           hover:border-accent/40
                           "
                         >
                           {skill}
                         </span>
                       ))}
-                    </div>
+                    </motion.div>
 
-                    {/* Achievements */}
-                    <div>
-                      <h4 className="mb-4 flex items-center gap-2 font-semibold">
+                    {/* Contributions */}
+                    <div className="hidden md:block ">
+                      <motion.h4
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="flex items-center gap-2 font-semibold mb-4"
+                      >
                         <Sparkles size={16} />
                         Key Contributions
-                      </h4>
+                      </motion.h4>
 
-                      <ul className="space-y-3">
+                      <motion.ul
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="space-y-3"
+                      >
                         {exp.achievements.map((item) => (
-                          <li key={item} className="opacity-80">
-                            → {item}
+                          <li key={item} className="flex gap-3 opacity-80">
+                            <span className="text-accent mt-[2px]">•</span>
+                            <span>{item}</span>
                           </li>
                         ))}
-                      </ul>
+                      </motion.ul>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
